@@ -5,14 +5,14 @@ export function Testimonials() {
   const testimonials = [
     {
       quote:
-        "This platform has completely transformed how we help families design memorials. The 3D visualization removes all uncertainty, and we've seen a dramatic reduction in design changes.",
+        "This platform has completely transformed how we help families design memorials. The 3D visualisation removes all uncertainty, and we've seen a dramatic reduction in design changes.",
       author: "Margaret Chen",
       title: "Director, Heritage Funeral Home",
       rating: 5,
     },
     {
       quote:
-        "Our monument sales have increased by 35% since implementing MemorialVision. Families love being able to see their custom gravestone designs in photorealistic detail before ordering.",
+        "Our monument sales have increased by 35% since implementing Pillaar. Families love being able to see their custom gravestone designs in photorealistic detail before ordering.",
       author: "Robert Martinez",
       title: "Owner, Eternal Monuments Inc.",
       rating: 5,

@@ -4,13 +4,13 @@ export function Features() {
   const features = [
     {
       icon: Boxes,
-      title: "Real-Time 3D Memorial Visualization",
+      title: "Real-Time 3D Memorial Visualisation",
       description:
         "Design custom gravestones, headstones, and tombstones with photorealistic rendering. Families see exactly what the finished memorial will look like.",
     },
     {
       icon: Palette,
-      title: "Extensive Memorial Customization",
+      title: "Extensive Memorial Customisation",
       description:
         "Choose from hundreds of granite materials, shapes, sizes, and finishes. Add custom engravings, emblems, and inscriptions in real-time.",
     },
@@ -22,9 +22,9 @@ export function Features() {
     },
     {
       icon: FileText,
-      title: "Digital Catalog Management",
+      title: "Digital Catalogue Management",
       description:
-        "Replace outdated paper catalogs with a searchable digital library. Update pricing and inventory in real-time across all locations.",
+        "Replace outdated paper catalogues with a searchable digital library. Update pricing and inventory in real-time across all locations.",
     },
     {
       icon: Globe,
@@ -36,7 +36,7 @@ export function Features() {
       icon: Zap,
       title: "Instant Quotes & Orders",
       description:
-        "Generate accurate pricing instantly based on materials, size, and customization. Export production-ready specifications to manufacturers.",
+        "Generate accurate pricing instantly based on materials, size, and customisation. Export production-ready specifications to manufacturers.",
     },
   ]
 

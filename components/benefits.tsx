@@ -6,7 +6,7 @@ export function Benefits() {
       icon: TrendingUp,
       stat: "30%",
       label: "Sales Increase",
-      description: "Monument companies report higher conversion rates with interactive 3D visualization",
+      description: "Monument companies report higher conversion rates with interactive 3D visualisation",
     },
     {
       icon: Clock,
@@ -24,7 +24,7 @@ export function Benefits() {
       icon: Users,
       stat: "500+",
       label: "Funeral Homes",
-      description: "Trust our platform for their memorial design and customization needs",
+      description: "Trust our platform for their memorial design and customisation needs",
     },
   ]
 

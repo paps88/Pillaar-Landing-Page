@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Cable as Cube } from "lucide-react"
 import { SignUpForm } from "@/components/sign-up-form"
+import Image from "next/image"
+import Link from "next/link"
 
 export function Hero() {
   return (
@@ -9,10 +10,16 @@ export function Hero() {
       <header className="border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Cube className="h-8 w-8 text-foreground" strokeWidth={1.5} />
-              <span className="font-serif text-2xl font-light tracking-tight text-foreground">MEMORIALVISION</span>
-            </div>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/pillaar-logo.png"
+                alt="Pillaar"
+                width={340}
+                height={85}
+                className="h-24 w-auto"
+                priority
+              />
+            </Link>
             <nav className="hidden items-center gap-10 md:flex">
               <a
                 href="#features"
@@ -57,7 +64,7 @@ export function Hero() {
               </h1>
 
               <p className="text-xl text-foreground leading-relaxed max-w-xl">
-                Photorealistic gravestone and headstone visualization for funeral homes and monument companies.
+                Photorealistic gravestone and headstone visualisation for funeral homes and monument companies.
               </p>
             </div>
 
@@ -72,19 +79,7 @@ export function Hero() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="lg" className="gap-2 px-8 py-6 text-base uppercase tracking-wider">
-                Get Started
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="px-8 py-6 text-base uppercase tracking-wider bg-transparent"
-              >
-                Watch Demo
-              </Button>
-            </div>
+            
           </div>
 
           {/* Right Column - Sign Up Form */}

@@ -111,7 +111,7 @@ export function SignUpForm() {
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="(555) 123-4567"
+                placeholder="+44 20 7123 4567"
                 required
                 className="h-12 pl-10 text-base"
               />
