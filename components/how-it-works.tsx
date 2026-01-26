@@ -4,15 +4,15 @@ export function HowItWorks() {
   const steps = [
     {
       icon: Upload,
-      title: "Import Your Catalog",
+      title: "Import Your Catalogue",
       description:
-        "Upload your existing gravestone inventory, materials, and pricing. We'll help migrate your entire memorial catalog to our platform.",
+        "Upload your existing gravestone inventory, materials, and pricing. We'll help migrate your entire memorial catalogue to our platform.",
     },
     {
       icon: MousePointer,
       title: "Design with Families",
       description:
-        "Guide families through the design process with intuitive 3D tools. Customize headstones, tombstones, and monuments in real-time.",
+        "Guide families through the design process with intuitive 3D tools. Customise headstones, tombstones, and monuments in real-time.",
     },
     {
       icon: Share2,
