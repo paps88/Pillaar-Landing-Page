@@ -16,22 +16,22 @@ const _inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Memorial Design Platform | 3D Gravestone & Headstone Visualization for Funeral Homes",
+  title: "Memorial Design Platform | 3D Gravestone & Headstone Visualisation for Funeral Homes",
   description:
-    "Professional memorial design software for funeral directors. Create custom gravestones, headstones, and tombstones with photorealistic 3D visualization. Reduce design revisions by 75% and increase sales by 30%.",
+    "Professional memorial design software for funeral directors. Create custom gravestones, headstones, and tombstones with photorealistic 3D visualisation. Reduce design revisions by 75% and increase sales by 30%.",
   keywords: [
     "memorial design",
     "gravestone design",
-    "headstone visualization",
+    "headstone visualisation",
     "3D tombstone",
     "funeral home software",
     "monument design platform",
-    "memorial visualization",
+    "memorial visualisation",
   ],
   openGraph: {
-    title: "Memorial Design Platform | 3D Gravestone Visualization",
+    title: "Memorial Design Platform | 3D Gravestone Visualisation",
     description:
-      "Transform your memorial design process with photorealistic 3D visualization for funeral homes and monument companies.",
+      "Transform your memorial design process with photorealistic 3D visualisation for funeral homes and monument companies.",
     type: "website",
   },
   generator: "v0.app",
