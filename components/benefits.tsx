@@ -1,30 +1,30 @@
-import { TrendingUp, Clock, Sparkles, Users } from "lucide-react"
+import { TrendingUp, Clock, Sparkles, Eye } from "lucide-react"
 
 export function Benefits() {
   const benefits = [
     {
-      icon: TrendingUp,
-      stat: "30%",
-      label: "Sales Increase",
-      description: "Monument companies report higher conversion rates with interactive 3D visualisation",
+      icon: Eye,
+      stat: "See It",
+      label: "Before You Commit",
+      description: "Visualise your memorial in photorealistic 3D before making any decisions",
     },
     {
       icon: Clock,
-      stat: "75%",
-      label: "Fewer Revisions",
-      description: "Families make confident decisions the first time with photorealistic previews",
+      stat: "Save",
+      label: "Time & Stress",
+      description: "Reduce back-and-forth revisions with clear visual previews from the start",
+    },
+    {
+      icon: TrendingUp,
+      stat: "Compare",
+      label: "With Confidence",
+      description: "Transparent quotes from verified stonemasons so you can choose wisely",
     },
     {
       icon: Sparkles,
-      stat: "2 Hours",
-      label: "Time Saved",
-      description: "Per memorial design with automated engraving and material selection tools",
-    },
-    {
-      icon: Users,
-      stat: "500+",
-      label: "Funeral Homes",
-      description: "Trust our platform for their memorial design and customisation needs",
+      stat: "Design",
+      label: "With Dignity",
+      description: "Create a lasting tribute that truly honours your loved one",
     },
   ]
 
@@ -33,10 +33,10 @@ export function Benefits() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-20 max-w-2xl">
           <h2 className="mb-6 text-5xl font-normal uppercase tracking-tight text-accent-foreground text-balance sm:text-6xl font-serif">
-            Proven Results
+            Why Pillaar
           </h2>
           <p className="text-xl text-accent-foreground/90">
-            Leading funeral homes and monument companies are transforming their memorial design process
+            A better way to design and commission memorials for your loved ones
           </p>
         </div>
 
