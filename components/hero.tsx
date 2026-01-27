@@ -53,12 +53,6 @@ export function Hero() {
           {/* Left Column - Content */}
           <div className="flex flex-col justify-center space-y-12">
             <div>
-              <div className="mb-8 inline-block bg-accent px-6 py-3">
-                <span className="text-sm font-medium uppercase tracking-wider text-accent-foreground">
-                  Now Available
-                </span>
-              </div>
-
               <h1 className="mb-8 font-serif text-5xl font-normal leading-[1.1] tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl">
                 3D Memorial Design Platform
               </h1>
