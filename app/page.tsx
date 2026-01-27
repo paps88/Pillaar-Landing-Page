@@ -59,7 +59,7 @@ export default function SplashPage() {
 
           {/* Subheading */}
           <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed max-w-3xl mb-16">
-            Design memorials in beautiful 3D, compare quotes from verified local stonemasons and funeral directors, and choose with complete confidence based on price, craftsmanship, and delivery timelines—all on one transparent platform.
+            Design your memorial in beautiful 3D, compare quotes from verified local stonemasons and funeral directors, and choose with confidence—transparent pricing, craftsmanship, and delivery timelines.
           </p>
 
           {/* Waitlist Signup */}
