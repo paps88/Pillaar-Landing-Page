@@ -58,8 +58,8 @@ export default function SplashPage() {
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed max-w-2xl mb-16">
-            The future of memorial design. Photorealistic 3D gravestone and headstone visualisation for funeral homes and monument companies that brings lasting tributes to life.
+          <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed max-w-xl mb-16">
+            The future of memorial design. Photorealistic 3D visualisation that brings lasting tributes to life.
           </p>
 
           {/* Waitlist Signup */}
