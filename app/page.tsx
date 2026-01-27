@@ -58,8 +58,8 @@ export default function SplashPage() {
           </h1>
 
           {/* Subheading */}
-          <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed max-w-2xl mb-16">
-            The future of memorial design. Photorealistic 3D gravestone and headstone visualisation for funeral homes and monument companies that brings lasting tributes to life.
+          <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed max-w-3xl mb-16">
+            Design memorials in beautiful 3D, compare quotes from verified local stonemasons and funeral directors, and choose with complete confidence based on price, craftsmanship, and delivery timelines—all on one transparent platform.
           </p>
 
           {/* Waitlist Signup */}
