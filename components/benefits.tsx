@@ -1,30 +1,30 @@
-import { TrendingUp, Clock, Sparkles, Users } from "lucide-react"
+import { TrendingUp, Clock, Repeat, Heart } from "lucide-react"
 
 export function Benefits() {
   const benefits = [
     {
       icon: TrendingUp,
-      stat: "30%",
-      label: "Sales Increase",
-      description: "Monument companies report higher conversion rates with interactive 3D visualisation",
+      stat: "Higher",
+      label: "Conversions",
+      description: "Families commit with confidence when they can visualise the finished memorial before ordering",
     },
     {
       icon: Clock,
-      stat: "75%",
-      label: "Fewer Revisions",
-      description: "Families make confident decisions the first time with photorealistic previews",
+      stat: "Fewer",
+      label: "Revisions",
+      description: "Clear 3D previews eliminate misunderstandings and reduce costly design change requests",
     },
     {
-      icon: Sparkles,
-      stat: "2 Hours",
-      label: "Time Saved",
-      description: "Per memorial design with automated engraving and material selection tools",
+      icon: Repeat,
+      stat: "Faster",
+      label: "Turnaround",
+      description: "Streamlined approval process means less back-and-forth and quicker production starts",
     },
     {
-      icon: Users,
-      stat: "500+",
-      label: "Funeral Homes",
-      description: "Trust our platform for their memorial design and customisation needs",
+      icon: Heart,
+      stat: "Stronger",
+      label: "Client Trust",
+      description: "Transparent pricing and realistic previews build lasting relationships with grieving families",
     },
   ]
 
@@ -33,10 +33,10 @@ export function Benefits() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-20 max-w-2xl">
           <h2 className="mb-6 text-5xl font-normal uppercase tracking-tight text-accent-foreground text-balance sm:text-6xl font-serif">
-            Proven Results
+            Partner Benefits
           </h2>
           <p className="text-xl text-accent-foreground/90">
-            Leading funeral homes and monument companies are transforming their memorial design process
+            Empower your business with a customer-facing 3D memorial design platform
           </p>
         </div>
 
