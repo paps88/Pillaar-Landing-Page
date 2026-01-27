@@ -9,7 +9,7 @@ export function CTA() {
           Ready to Transform Your Memorial Design Process?
         </h2>
         <p className="mb-12 text-xl text-accent-foreground leading-relaxed">
-          Join hundreds of funeral homes and monument companies providing families with a modern, dignified design
+          Be among the first funeral homes and monument companies to offer families a modern, dignified design
           experience.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
