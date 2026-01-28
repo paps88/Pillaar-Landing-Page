@@ -21,17 +21,7 @@ export function CTA() {
             Start Free Trial
             <ArrowRight className="h-5 w-5" />
           </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="h-14 px-8 text-base uppercase tracking-wider font-semibold border-2 border-accent-foreground bg-transparent text-accent-foreground hover:bg-accent-foreground hover:text-accent"
-          >
-            Schedule Demo
-          </Button>
         </div>
-        <p className="mt-8 text-sm text-accent-foreground/90 uppercase tracking-wider">
-          No credit card required • Setup in 24 hours
-        </p>
       </div>
     </section>
   )

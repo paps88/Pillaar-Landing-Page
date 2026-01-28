@@ -125,8 +125,6 @@ export function SignUpForm() {
           >
             {isSubmitting ? "Processing..." : "Request Free Demo"}
           </Button>
-
-          <p className="text-xs text-center text-muted-foreground">No credit card required • Setup in 24 hours</p>
         </form>
       </CardContent>
     </Card>
