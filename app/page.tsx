@@ -88,7 +88,7 @@ export default function SplashPage() {
                 variant="outline"
                 className="border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent text-sm uppercase tracking-wider font-sans"
               >
-                Become a Partner
+                Memorial Design Platform
               </Button>
             </Link>
           </nav>
