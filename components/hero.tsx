@@ -54,7 +54,7 @@ export function Hero() {
           <div className="flex flex-col justify-center space-y-12">
             <div>
               <h1 className="mb-8 font-serif text-5xl font-normal leading-[1.1] tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl">
-                Empowering Families with Transparent Choices and Peace of Mind
+                3D Memorial Design Platform
               </h1>
 
               <p className="text-xl text-foreground leading-relaxed max-w-xl">
