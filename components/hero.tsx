@@ -77,7 +77,7 @@ export function Hero() {
           </div>
 
           {/* Right Column - Sign Up Form */}
-          <div className="flex items-center justify-center lg:justify-end">
+          <div id="signup-form" className="flex items-center justify-center lg:justify-end">
             <SignUpForm />
           </div>
         </div>

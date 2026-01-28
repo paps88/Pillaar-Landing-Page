@@ -13,14 +13,16 @@ export function CTA() {
           experience.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button
-            size="lg"
-            variant="secondary"
-            className="gap-2 h-14 px-8 text-base uppercase tracking-wider font-semibold"
-          >
-            Register Your Interest
-            <ArrowRight className="h-5 w-5" />
-          </Button>
+          <a href="#signup-form">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="gap-2 h-14 px-8 text-base uppercase tracking-wider font-semibold"
+            >
+              Register Your Interest
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </a>
         </div>
       </div>
     </section>
