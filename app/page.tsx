@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { WaitlistForm } from "@/components/waitlist-form"
-import { Eye, BadgePoundSterling, Users, ShieldCheck, Clock, Heart } from "lucide-react"
+import { Eye, BadgePoundSterling, Users, ShieldCheck, Clock, Heart, ArrowUp } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Pillaar | Design Gravestones & Headstones in 3D | Memorial Design Platform",
@@ -126,7 +126,9 @@ export default function SplashPage() {
             </p>
 
             {/* Waitlist Signup */}
-            <WaitlistForm />
+            <div id="waitlist-form">
+              <WaitlistForm />
+            </div>
           </div>
         </article>
 
@@ -246,6 +248,28 @@ export default function SplashPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-24 bg-foreground text-background">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal mb-6">
+              Be the First to Know
+            </h2>
+            <p className="text-lg text-background/80 mb-10 leading-relaxed">
+              Whether you're a family looking to create a meaningful tribute or a stonemason wanting to connect with more clients—join the Pillaar waitlist and be part of a better way to design memorials.
+            </p>
+            <a href="#waitlist-form">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="gap-2 h-14 px-8 text-base uppercase tracking-wider font-semibold"
+              >
+                Join the Waitlist
+                <ArrowUp className="h-5 w-5" />
+              </Button>
+            </a>
           </div>
         </section>
 
