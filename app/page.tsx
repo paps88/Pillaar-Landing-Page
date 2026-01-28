@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { WaitlistForm } from "@/components/waitlist-form"
+import { Eye, BadgePoundSterling, Users, ShieldCheck, Clock, Heart } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Pillaar | Design Gravestones & Headstones in 3D | Memorial Design Platform",
@@ -198,6 +199,7 @@ export default function SplashPage() {
             
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <div className="p-6 border border-border bg-card">
+                <Eye className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="font-semibold text-lg text-foreground mb-3">See Before You Commit</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Visualise your memorial in photorealistic 3D before placing an order. No surprises, no regrets—just confidence in your decision.
@@ -205,6 +207,7 @@ export default function SplashPage() {
               </div>
               
               <div className="p-6 border border-border bg-card">
+                <BadgePoundSterling className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="font-semibold text-lg text-foreground mb-3">Transparent Pricing</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Compare clear, upfront quotes from verified stonemasons. Understand exactly what you're paying for with no hidden fees.
@@ -212,6 +215,7 @@ export default function SplashPage() {
               </div>
               
               <div className="p-6 border border-border bg-card">
+                <Users className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="font-semibold text-lg text-foreground mb-3">Collaborate with Family</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Share designs with loved ones anywhere in the world. Make decisions together during a difficult time.
@@ -219,6 +223,7 @@ export default function SplashPage() {
               </div>
               
               <div className="p-6 border border-border bg-card">
+                <ShieldCheck className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="font-semibold text-lg text-foreground mb-3">Verified Craftsmen</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Connect with trusted, vetted stonemasons and funeral directors who meet our quality standards.
@@ -226,6 +231,7 @@ export default function SplashPage() {
               </div>
               
               <div className="p-6 border border-border bg-card">
+                <Clock className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="font-semibold text-lg text-foreground mb-3">Design at Your Pace</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Create your memorial from home, in your own time. No pressure, no rushed decisions during grief.
@@ -233,6 +239,7 @@ export default function SplashPage() {
               </div>
               
               <div className="p-6 border border-border bg-card">
+                <Heart className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="font-semibold text-lg text-foreground mb-3">Lasting Tribute</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Honour your loved one with a personalised memorial that reflects their life and legacy exactly as you envision.
