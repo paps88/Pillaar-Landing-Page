@@ -18,7 +18,7 @@ export function CTA() {
             variant="secondary"
             className="gap-2 h-14 px-8 text-base uppercase tracking-wider font-semibold"
           >
-            Start Free Trial
+            Register Your Interest
             <ArrowRight className="h-5 w-5" />
           </Button>
         </div>

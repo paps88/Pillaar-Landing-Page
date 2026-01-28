@@ -51,7 +51,7 @@ export function SignUpForm() {
   return (
     <Card className="w-full max-w-md border-2 border-foreground shadow-xl">
       <CardHeader className="space-y-3 pb-8">
-        <CardTitle className="text-3xl font-bold uppercase tracking-tight text-foreground">Start Free Trial</CardTitle>
+        <CardTitle className="text-3xl font-bold uppercase tracking-tight text-foreground">Register Demo Interest</CardTitle>
         <CardDescription className="text-base text-muted-foreground">
           Join leading funeral homes using 3D memorial design
         </CardDescription>
