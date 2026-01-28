@@ -68,18 +68,11 @@ export function Footer() {
           </div>
         </div>
 
-        {/* SEO Content Footer */}
-        <div className="mt-12 border-t border-border pt-8 space-y-6">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Pillaar is the UK's leading 3D memorial design platform, helping families and funeral professionals create beautiful, personalised gravestones, headstones, and monuments. Our photorealistic visualisation technology allows you to see your memorial design before committing, ensuring complete satisfaction and peace of mind during a difficult time.
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed mt-4">
-              We connect bereaved families with verified stonemasons and memorial craftsmen across the United Kingdom, offering transparent pricing and collaborative design tools. Whether you're planning a traditional granite headstone, a contemporary memorial, or a bespoke monument, Pillaar makes the process simple, dignified, and stress-free.
-            </p>
-          </div>
+        {/* SEO Keywords Footer */}
+        <div className="mt-12 border-t border-border pt-8">
           <p className="text-xs text-muted-foreground text-center leading-relaxed">
-            Memorial design platform | Gravestone design software | 3D headstone visualisation | Tombstone customisation | Funeral home technology | Monument design tools | Custom memorial solutions | UK stonemasons | Headstone quotes | Memorial planning
+            Memorial design platform | Gravestone design software | 3D headstone visualisation | Tombstone customisation
+            | Funeral home technology | Monument design tools | Custom memorial solutions
           </p>
         </div>
       </div>
