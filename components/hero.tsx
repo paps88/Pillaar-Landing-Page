@@ -68,8 +68,12 @@ export function Hero() {
                 <span className="text-lg text-foreground">Fewer design revisions</span>
               </div>
               <div className="flex items-baseline gap-4 border-l-4 border-foreground pl-6">
-                <span className="font-serif text-5xl font-bold text-foreground">30%</span>
-                <span className="text-lg text-foreground">Increase in monument sales</span>
+                <span className="font-serif text-5xl font-bold text-foreground">90%</span>
+                <span className="text-lg text-foreground">Client approval on first presentation</span>
+              </div>
+              <div className="flex items-baseline gap-4 border-l-4 border-muted-foreground pl-6">
+                <span className="font-serif text-5xl font-bold text-foreground">5x</span>
+                <span className="text-lg text-foreground">Faster design turnaround</span>
               </div>
             </div>
 
