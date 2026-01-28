@@ -189,6 +189,59 @@ export default function SplashPage() {
           </div>
         </section>
 
+        {/* Key Benefits Section */}
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-24">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-foreground mb-16 text-center">
+              Key Benefits
+            </h2>
+            
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="p-6 border border-border bg-card">
+                <h3 className="font-semibold text-lg text-foreground mb-3">See Before You Commit</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Visualise your memorial in photorealistic 3D before placing an order. No surprises, no regrets—just confidence in your decision.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <h3 className="font-semibold text-lg text-foreground mb-3">Transparent Pricing</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Compare clear, upfront quotes from verified stonemasons. Understand exactly what you're paying for with no hidden fees.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <h3 className="font-semibold text-lg text-foreground mb-3">Collaborate with Family</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Share designs with loved ones anywhere in the world. Make decisions together during a difficult time.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <h3 className="font-semibold text-lg text-foreground mb-3">Verified Craftsmen</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Connect with trusted, vetted stonemasons and funeral directors who meet our quality standards.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <h3 className="font-semibold text-lg text-foreground mb-3">Design at Your Pace</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Create your memorial from home, in your own time. No pressure, no rushed decisions during grief.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <h3 className="font-semibold text-lg text-foreground mb-3">Lasting Tribute</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Honour your loved one with a personalised memorial that reflects their life and legacy exactly as you envision.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Continue Main Content */}
         <article className="px-6 sm:px-8 lg:px-12 py-12">
           <div className="max-w-3xl w-full mx-auto">
