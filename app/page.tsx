@@ -110,7 +110,7 @@ export default function SplashPage() {
             </div>
 
             {/* SEO H1 - visually styled as tagline */}
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-foreground mb-6 leading-tight text-balance">
+            <h1 className="font-serif text-xl sm:text-2xl lg:text-3xl font-normal text-foreground mb-6 leading-tight">
               <span className="block">Empowering Families with Transparent Choices and Peace of Mind</span>
               <span className="sr-only">
                 - 3D Gravestone, Headstone and Memorial Design Platform
