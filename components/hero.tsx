@@ -58,7 +58,7 @@ export function Hero() {
               </h1>
 
               <p className="text-xl text-foreground leading-relaxed max-w-xl">
-                Empowering Families with Transparent Choices and Peace of Mind
+                The future of memorial design. Photorealistic 3D gravestone and headstone visualisation for funeral homes and monument companies that brings lasting tributes to life.
               </p>
             </div>
 
