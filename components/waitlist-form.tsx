@@ -14,15 +14,42 @@ export function WaitlistForm() {
   const [userType, setUserType] = useState<UserType>("family")
   const [companyName, setCompanyName] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email) {
-      // Data to be stored: email, userType, companyName (if provider)
-      console.log({ email, userType, companyName })
+    if (!email) return
+
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          userType,
+          companyName: userType === "provider" ? companyName : null,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to join waitlist")
+      }
+
       setIsSubmitted(true)
       setEmail("")
       setCompanyName("")
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -96,12 +123,17 @@ export function WaitlistForm() {
           />
           <Button
             type="submit"
-            className="h-12 px-8 bg-foreground text-background hover:bg-foreground/90 font-sans"
+            disabled={isSubmitting}
+            className="h-12 px-8 bg-foreground text-background hover:bg-foreground/90 font-sans disabled:opacity-50"
           >
-            <span className="mr-2">Notify Me</span>
-            <ArrowRight className="h-4 w-4" />
+            <span className="mr-2">{isSubmitting ? "Joining..." : "Notify Me"}</span>
+            {!isSubmitting && <ArrowRight className="h-4 w-4" />}
           </Button>
         </div>
+        
+        {error && (
+          <p className="text-sm text-red-500 mt-2">{error}</p>
+        )}
       </div>
     </form>
   )
