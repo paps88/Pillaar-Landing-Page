@@ -32,16 +32,7 @@ export function Footer() {
                   Features
                 </a>
               </li>
-              <li>
-                <a href="#" className="transition-opacity hover:opacity-60">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="transition-opacity hover:opacity-60">
-                  Case Studies
-                </a>
-              </li>
+
               <li>
                 <a href="#" className="transition-opacity hover:opacity-60">
                   Demo

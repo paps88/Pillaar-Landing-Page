@@ -12,16 +12,45 @@ import { Building2, Mail, Phone, User } from "lucide-react"
 export function SignUpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    const formData = new FormData(e.currentTarget)
+    const fullName = formData.get("name") as string
+    const companyName = formData.get("company") as string
+    const email = formData.get("email") as string
+    const phone = formData.get("phone") as string
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    try {
+      const response = await fetch("/api/demo-request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          companyName,
+          email,
+          phone,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit demo request")
+      }
+
+      setIsSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
@@ -51,7 +80,7 @@ export function SignUpForm() {
   return (
     <Card className="w-full max-w-md border-2 border-foreground shadow-xl">
       <CardHeader className="space-y-3 pb-8">
-        <CardTitle className="text-3xl font-bold uppercase tracking-tight text-foreground">Start Free Trial</CardTitle>
+        <CardTitle className="text-3xl font-bold uppercase tracking-tight text-foreground">Register Demo Interest</CardTitle>
         <CardDescription className="text-base text-muted-foreground">
           Join leading funeral homes using 3D memorial design
         </CardDescription>
@@ -118,6 +147,10 @@ export function SignUpForm() {
             </div>
           </div>
 
+          {error && (
+            <p className="text-sm text-red-500 text-center">{error}</p>
+          )}
+
           <Button
             type="submit"
             className="w-full h-12 text-base uppercase tracking-wider font-semibold"
@@ -125,8 +158,6 @@ export function SignUpForm() {
           >
             {isSubmitting ? "Processing..." : "Request Free Demo"}
           </Button>
-
-          <p className="text-xs text-center text-muted-foreground">No credit card required • Setup in 24 hours</p>
         </form>
       </CardContent>
     </Card>

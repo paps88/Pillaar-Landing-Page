@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { WaitlistForm } from "@/components/waitlist-form"
+import { Eye, BadgePoundSterling, Users, ShieldCheck, Clock, Heart, ArrowUp } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Pillaar | Design Gravestones & Headstones in 3D | Memorial Design Platform",
@@ -88,7 +89,7 @@ export default function SplashPage() {
                 variant="outline"
                 className="border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent text-sm uppercase tracking-wider font-sans"
               >
-                Become a Partner
+                Memorial Design Platform
               </Button>
             </Link>
           </nav>
@@ -102,16 +103,16 @@ export default function SplashPage() {
               <Image
                 src="/pillaar-logo.png"
                 alt="Pillaar - 3D Gravestone and Headstone Memorial Design Platform"
-                width={680}
-                height={170}
-                className="h-40 sm:h-56 lg:h-72 w-auto"
+                width={816}
+                height={204}
+                className="h-48 sm:h-[268px] lg:h-[346px] w-auto"
                 priority
               />
             </div>
 
             {/* SEO H1 - visually styled as tagline */}
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-foreground mb-6 leading-tight text-balance">
-              <span className="block">Dignity, Quality, Clarity</span>
+            <h1 className="font-serif text-xl sm:text-2xl lg:text-3xl font-normal text-foreground mb-6 leading-tight">
+              <span className="block">Empowering Families with Transparent Choices and Peace of Mind</span>
               <span className="sr-only">
                 - 3D Gravestone, Headstone and Memorial Design Platform
               </span>
@@ -125,8 +126,156 @@ export default function SplashPage() {
             </p>
 
             {/* Waitlist Signup */}
-            <WaitlistForm />
+            <div id="waitlist-form">
+              <WaitlistForm />
+            </div>
+          </div>
+        </article>
 
+        {/* How It Works Section */}
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-24 bg-muted/30">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-foreground mb-12 text-center">
+              How It Works
+            </h2>
+            
+            {/* User Story */}
+            <div className="space-y-8">
+              <div className="flex gap-6 items-start">
+                <div className="flex-shrink-0 w-10 h-10 bg-foreground text-background flex items-center justify-center font-semibold">
+                  1
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg text-foreground mb-2">Design Your Memorial</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Sarah lost her father last month. Using Pillaar, she creates a beautiful 3D design for his headstone from the comfort of her home—choosing the stone type, inscription, and decorative elements that honour his memory.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex gap-6 items-start">
+                <div className="flex-shrink-0 w-10 h-10 bg-foreground text-background flex items-center justify-center font-semibold">
+                  2
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg text-foreground mb-2">Compare Quotes Transparently</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Once her design is complete, Sarah receives quotes from verified local stonemasons—each showing clear pricing, craftsmanship details, and delivery timelines. No hidden fees, no pressure.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex gap-6 items-start">
+                <div className="flex-shrink-0 w-10 h-10 bg-foreground text-background flex items-center justify-center font-semibold">
+                  3
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg text-foreground mb-2">Share with Family</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Sarah shares the 3D preview with her siblings across the country. Together, they review the design, suggest small changes, and reach a decision everyone feels good about.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex gap-6 items-start">
+                <div className="flex-shrink-0 w-10 h-10 bg-foreground text-background flex items-center justify-center font-semibold">
+                  4
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg text-foreground mb-2">Choose with Confidence</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    With full clarity on what the memorial will look like and cost, Sarah selects a trusted stonemason. Her father's tribute is crafted exactly as designed—a lasting legacy created with peace of mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Key Benefits Section */}
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-24">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-foreground mb-16 text-center">
+              Key Benefits
+            </h2>
+            
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="p-6 border border-border bg-card">
+                <Eye className="h-8 w-8 text-foreground mb-4" />
+                <h3 className="font-semibold text-lg text-foreground mb-3">See Before You Commit</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Visualise your memorial in photorealistic 3D before placing an order. No surprises, no regrets—just confidence in your decision.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <BadgePoundSterling className="h-8 w-8 text-foreground mb-4" />
+                <h3 className="font-semibold text-lg text-foreground mb-3">Transparent Pricing</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Compare clear, upfront quotes from verified stonemasons. Understand exactly what you're paying for with no hidden fees.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <Users className="h-8 w-8 text-foreground mb-4" />
+                <h3 className="font-semibold text-lg text-foreground mb-3">Collaborate with Family</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Share designs with loved ones anywhere in the world. Make decisions together during a difficult time.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <ShieldCheck className="h-8 w-8 text-foreground mb-4" />
+                <h3 className="font-semibold text-lg text-foreground mb-3">Verified Craftsmen</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Connect with trusted, vetted stonemasons and funeral directors who meet our quality standards.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <Clock className="h-8 w-8 text-foreground mb-4" />
+                <h3 className="font-semibold text-lg text-foreground mb-3">Design at Your Pace</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Create your memorial from home, in your own time. No pressure, no rushed decisions during grief.
+                </p>
+              </div>
+              
+              <div className="p-6 border border-border bg-card">
+                <Heart className="h-8 w-8 text-foreground mb-4" />
+                <h3 className="font-semibold text-lg text-foreground mb-3">Lasting Tribute</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Honour your loved one with a personalised memorial that reflects their life and legacy exactly as you envision.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="w-full px-6 sm:px-8 lg:px-12 py-24 bg-foreground text-background">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal mb-6">
+              Be the First to Know
+            </h2>
+            <p className="text-lg text-background/80 mb-10 leading-relaxed">
+              Whether you're a family looking to create a meaningful tribute or a stonemason wanting to connect with more clients—join the Pillaar waitlist and be part of a better way to design memorials.
+            </p>
+            <a href="#waitlist-form">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="gap-2 h-14 px-8 text-base uppercase tracking-wider font-semibold"
+              >
+                Join the Waitlist
+                <ArrowUp className="h-5 w-5" />
+              </Button>
+            </a>
+          </div>
+        </section>
+
+        {/* Continue Main Content */}
+        <article className="px-6 sm:px-8 lg:px-12 py-12">
+          <div className="max-w-3xl w-full mx-auto">
             {/* SEO Content - visually hidden but crawlable */}
             <section className="sr-only" aria-label="About our memorial design services">
               <h2>About Pillaar Memorial Design</h2>

@@ -13,25 +13,17 @@ export function CTA() {
           experience.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button
-            size="lg"
-            variant="secondary"
-            className="gap-2 h-14 px-8 text-base uppercase tracking-wider font-semibold"
-          >
-            Start Free Trial
-            <ArrowRight className="h-5 w-5" />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="h-14 px-8 text-base uppercase tracking-wider font-semibold border-2 border-accent-foreground bg-transparent text-accent-foreground hover:bg-accent-foreground hover:text-accent"
-          >
-            Schedule Demo
-          </Button>
+          <a href="#signup-form">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="gap-2 h-14 px-8 text-base uppercase tracking-wider font-semibold"
+            >
+              Register Your Interest
+              <ArrowRight className="h-5 w-5" />
+            </Button>
+          </a>
         </div>
-        <p className="mt-8 text-sm text-accent-foreground/90 uppercase tracking-wider">
-          No credit card required • Setup in 24 hours
-        </p>
       </div>
     </section>
   )
