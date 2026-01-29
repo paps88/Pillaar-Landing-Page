@@ -103,9 +103,9 @@ export default function SplashPage() {
               <Image
                 src="/pillaar-logo.png"
                 alt="Pillaar - 3D Gravestone and Headstone Memorial Design Platform"
-                width={680}
-                height={170}
-                className="h-40 sm:h-56 lg:h-72 w-auto"
+                width={816}
+                height={204}
+                className="h-48 sm:h-[268px] lg:h-[346px] w-auto"
                 priority
               />
             </div>
