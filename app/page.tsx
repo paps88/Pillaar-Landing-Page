@@ -288,7 +288,7 @@ export default function SplashPage() {
               <h3>Our Services</h3>
               <ul>
                 <li>3D gravestone design and visualisation</li>
-                <li>Custom headstone design with real-time preview</li>
+                <li>Custom headstone design with real time preview</li>
                 <li>Memorial and monument design tools</li>
                 <li>Tombstone customisation with engravings and inscriptions</li>
                 <li>Compare quotes from verified UK stonemasons</li>

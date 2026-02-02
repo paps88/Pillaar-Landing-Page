@@ -71,8 +71,7 @@ export function Footer() {
         {/* SEO Keywords Footer */}
         <div className="mt-12 border-t border-border pt-8">
           <p className="text-xs text-muted-foreground text-center leading-relaxed">
-            Memorial design platform | Gravestone design software | 3D headstone visualisation | Tombstone customisation
-            | Funeral home technology | Monument design tools | Custom memorial solutions
+            Memorial design platform | Gravestone design software | 3D headstone visualisation | Tombstone customisation | Funeral home technology | Monument design tools | Custom memorial solutions
           </p>
         </div>
       </div>
