@@ -12,7 +12,7 @@ export function HowItWorks() {
       icon: MousePointer,
       title: "Design with Families",
       description:
-        "Guide families through the design process with intuitive 3D tools. Customise headstones, tombstones, and monuments in real-time.",
+        "Guide families through the design process with intuitive 3D tools. Customise headstones, tombstones, and monuments in real time.",
     },
     {
       icon: Share2,
