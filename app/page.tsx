@@ -121,7 +121,7 @@ export default function SplashPage() {
             {/* Subheading with keywords */}
             <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed max-w-3xl mb-16">
               Design your memorial in beautiful 3D, compare quotes from verified local stonemasons
-              and funeral directors, and choose with confidence—transparent pricing, craftsmanship,
+              and funeral directors, and choose with confidence transparent pricing, craftsmanship,
               and delivery timelines.
             </p>
 
@@ -148,7 +148,7 @@ export default function SplashPage() {
                 <div>
                   <h3 className="font-semibold text-lg text-foreground mb-2">Design Your Memorial</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Sarah lost her father last month. Using Pillaar, she creates a beautiful 3D design for his headstone from the comfort of her home—choosing the stone type, inscription, and decorative elements that honour his memory.
+                    Sarah lost her father last month. Using Pillaar, she creates a beautiful 3D design for his headstone from the comfort of her home choosing the stone type, inscription, and decorative elements that honour his memory.
                   </p>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function SplashPage() {
                 <div>
                   <h3 className="font-semibold text-lg text-foreground mb-2">Compare Quotes Transparently</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Once her design is complete, Sarah receives quotes from verified local stonemasons—each showing clear pricing, craftsmanship details, and delivery timelines. No hidden fees, no pressure.
+                    Once her design is complete, Sarah receives quotes from verified local stonemasons each showing clear pricing, craftsmanship details, and delivery timelines. No hidden fees, no pressure.
                   </p>
                 </div>
               </div>
@@ -184,7 +184,7 @@ export default function SplashPage() {
                 <div>
                   <h3 className="font-semibold text-lg text-foreground mb-2">Choose with Confidence</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    With full clarity on what the memorial will look like and cost, Sarah selects a trusted stonemason. Her father's tribute is crafted exactly as designed—a lasting legacy created with peace of mind.
+                    With full clarity on what the memorial will look like and cost, Sarah selects a trusted stonemason. Her father's tribute is crafted exactly as designed a lasting legacy created with peace of mind.
                   </p>
                 </div>
               </div>
@@ -204,7 +204,7 @@ export default function SplashPage() {
                 <Eye className="h-8 w-8 text-foreground mb-4" />
                 <h3 className="font-semibold text-lg text-foreground mb-3">See Before You Commit</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Visualise your memorial in photorealistic 3D before placing an order. No surprises, no regrets—just confidence in your decision.
+                  Visualise your memorial in photorealistic 3D before placing an order. No surprises, no regrets just confidence in your decision.
                 </p>
               </div>
               
@@ -258,7 +258,7 @@ export default function SplashPage() {
               Be the First to Know
             </h2>
             <p className="text-lg text-background/80 mb-10 leading-relaxed">
-              Whether you're a family looking to create a meaningful tribute or a stonemason wanting to connect with more clients—join the Pillaar waitlist and be part of a better way to design memorials.
+              Whether you're a family looking to create a meaningful tribute or a stonemason wanting to connect with more clients join the Pillaar waitlist and be part of a better way to design memorials.
             </p>
             <a href="#waitlist-form">
               <Button
