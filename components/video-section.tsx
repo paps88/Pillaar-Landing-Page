@@ -5,8 +5,8 @@ import { Play, Pause, Maximize2 } from "lucide-react"
 
 export function VideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [hasStarted, setHasStarted] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [hasStarted, setHasStarted] = useState(true)
 
   function togglePlay() {
     if (!videoRef.current) return
@@ -44,12 +44,11 @@ export function VideoSection() {
             src="/demo-video.mp4"
             className="w-full aspect-video object-cover"
             playsInline
+            autoPlay
+            loop
+            muted
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
-            onEnded={() => {
-              setIsPlaying(false)
-              setHasStarted(false)
-            }}
           />
 
           {/* Play/Pause overlay */}
