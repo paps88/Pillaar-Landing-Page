@@ -31,11 +31,11 @@ export function VideoSection() {
   return (
     <section className="w-full px-6 sm:px-8 lg:px-12 py-16 bg-muted/20">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-serif text-2xl sm:text-3xl font-normal text-foreground mb-3 text-center">
-          See Pillaar in Action
+        <h2 className="font-serif text-2xl sm:text-3xl font-normal text-foreground mb-3 text-center text-balance">
+          {"Design Your Perfect Memorial in Minutes"}
         </h2>
         <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto leading-relaxed">
-          Watch how Pillaar makes memorial design simple, transparent, and meaningful.
+          No more guessing from catalog photos. Our 3D designer lets you see exactly what your memorial will look like before you request quotes. Rotate, customize, and perfect every detail.
         </p>
 
         <div className="relative group border border-border bg-card overflow-hidden">
