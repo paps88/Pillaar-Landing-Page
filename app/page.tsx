@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { WaitlistForm } from "@/components/waitlist-form"
+import { VideoSection } from "@/components/video-section"
 import { Eye, BadgePoundSterling, Users, ShieldCheck, Clock, Heart, ArrowUp } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -131,6 +132,9 @@ export default function SplashPage() {
             </div>
           </div>
         </article>
+
+        {/* Video Section */}
+        <VideoSection />
 
         {/* How It Works Section */}
         <section className="w-full px-6 sm:px-8 lg:px-12 py-24 bg-muted/30">
