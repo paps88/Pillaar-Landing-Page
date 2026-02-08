@@ -35,7 +35,7 @@ export function VideoSection() {
           {"Design Your Perfect Memorial in Minutes"}
         </h2>
         <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto leading-relaxed">
-          No more guessing from catalog photos. Our 3D designer lets you see exactly what your memorial will look like before you request quotes. Rotate, customize, and perfect every detail.
+          No more guessing from catalogue photos. Our 3D designer lets you see exactly what your memorial will look like before you request quotes. Rotate, customise, and perfect every detail.
         </p>
 
         <div className="relative group border border-border bg-card overflow-hidden">
