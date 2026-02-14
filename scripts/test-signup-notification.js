@@ -1,7 +1,7 @@
 // Test script to send a test notification email directly via Resend API
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL
+const NOTIFICATION_EMAIL = "mikepappoe@gmail.com"
 
 async function testEmailNotification() {
   console.log("Testing email notification via Resend...")
