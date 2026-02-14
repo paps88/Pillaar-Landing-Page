@@ -18,7 +18,7 @@ async function sendNotificationEmail(signupData: {
 
   try {
     await resend.emails.send({
-      from: "Pillaar Waitlist <notifications@pillaar.com>",
+      from: "Pillaar Waitlist <info@pillaar.com>",
       to: notificationEmail,
       subject: `New Waitlist Signup: ${signupData.userType === "provider" ? "Provider" : "Family"}`,
       html: `
