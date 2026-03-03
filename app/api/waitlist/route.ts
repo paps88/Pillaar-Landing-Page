@@ -108,15 +108,19 @@ export async function POST(request: Request) {
       throw error
     }
 
-    // Send notification email to admin (non-blocking)
-    sendNotificationEmail({
+    // Send emails (awaited so errors are caught)
+    console.log("[v0] Attempting to send notification email...")
+    console.log("[v0] RESEND_API_KEY exists:", !!process.env.RESEND_API_KEY)
+    console.log("[v0] NOTIFICATION_EMAIL:", process.env.NOTIFICATION_EMAIL)
+
+    await sendNotificationEmail({
       email,
       userType: userType || "family",
       companyName: companyName || null,
     })
 
-    // Send confirmation email to user (non-blocking)
-    sendConfirmationEmail(email)
+    console.log("[v0] Attempting to send confirmation email to:", email)
+    await sendConfirmationEmail(email)
 
     return NextResponse.json({ success: true, data })
   } catch (error) {
