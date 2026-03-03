@@ -1,7 +1,7 @@
 // Test script to send a test notification email directly via Resend API
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const NOTIFICATION_EMAIL = "mikepappoe@gmail.com"
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "info@pillaar.com"
 
 async function testEmailNotification() {
   console.log("Testing email notification via Resend...")
@@ -28,7 +28,7 @@ async function testEmailNotification() {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Pillaar Waitlist <onboarding@resend.dev>",
+        from: "Pillaar Waitlist <info@pillaar.com>",
         to: NOTIFICATION_EMAIL,
         subject: "Test: New Waitlist Signup - Family",
         html: `
