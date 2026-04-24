@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillaar for Providers | Stonemasons & Funeral Directors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F4F1EB;
+    --text: #2C2826;
+    --accent: #D1D668;
+    --accent-dark: #B8BC4A;
+    --line: rgba(44, 40, 38, 0.15);
+    --terra: #C95D3B;
+    --blush: #F2D4CD;
+    --forest: #1F3D3C;
+    --peach: #E3A88F;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --text-muted: rgba(44, 40, 38, 0.55);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 60px;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+  }
+  .nav-left { display: flex; align-items: center; gap: 2.5rem; }
+  .nav-link {
+    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--text); text-decoration: none;
+    opacity: 0.65; transition: opacity 0.2s;
+  }
+  .nav-link:hover { opacity: 1; }
+  .nav-link.active { opacity: 1; border-bottom: 1px solid var(--text); padding-bottom: 1px; }
+  .nav-logo {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px; height: 28px; background: var(--terra);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px;
+  }
+  .logo-text { font-family: var(--sans); font-size: 1rem; font-weight: 500; color: var(--text); letter-spacing: 0.02em; }
+  .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+  .btn-pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--accent); color: var(--text);
+    padding: 0.5rem 1.1rem; border-radius: 999px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s; white-space: nowrap;
+  }
+  .btn-pill:hover { background: var(--accent-dark); transform: scale(1.02); }
+  .btn-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text); flex-shrink: 0; }
+  .btn-pill-dark {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--forest); color: #F4F1EB;
+    padding: 0.5rem 1.1rem; border-radius: 999px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s; white-space: nowrap;
+  }
+  .btn-pill-dark:hover { opacity: 0.85; transform: scale(1.02); }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding-top: 60px; min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-left {
+    background: var(--forest); padding: 5rem 3.5rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute; bottom: -10%; right: -10%; width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(209,214,104,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(244,241,235,0.4); margin-bottom: 1.5rem; font-weight: 400;
+    opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 400; line-height: 1.12; color: #F4F1EB;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 0.95rem; color: rgba(244,241,235,0.55);
+    line-height: 1.75; font-weight: 300; max-width: 380px; margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .hero-cta-row {
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .btn-start-light {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent); color: var(--text);
+    padding: 0.75rem 1.75rem; border-radius: 999px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em;
+    text-transform: uppercase; text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-start-light:hover { background: var(--accent-dark); transform: scale(1.02); }
+  .btn-start-light .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--forest); flex-shrink: 0; }
+
+  .btn-ghost-light {
+    font-size: 0.82rem; color: rgba(244,241,235,0.45); text-decoration: none;
+    letter-spacing: 0.04em; border-bottom: 1px solid rgba(244,241,235,0.2); padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost-light:hover { color: rgba(244,241,235,0.75); border-color: rgba(244,241,235,0.4); }
+
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 3rem; padding-top: 2.5rem;
+    border-top: 1px solid rgba(244,241,235,0.1);
+    opacity: 0; animation: fadeUp 0.8s 0.65s forwards;
+  }
+  .hstat-n { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; color: var(--accent); line-height: 1; }
+  .hstat-l { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.09em; color: rgba(244,241,235,0.35); margin-top: 4px; }
+
+  /* hero right — dashboard preview */
+  .hero-right {
+    background: #EDE9E1; padding: 4rem 3rem;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+
+
+  .dash-preview {
+    background: var(--bg); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 16px 60px rgba(31,61,60,0.12), 0 2px 8px rgba(31,61,60,0.06);
+    border: 1px solid var(--line); width: 100%; max-width: 420px;
+    opacity: 0; animation: fadeUp 1s 0.4s forwards;
+  }
+  .dash-nav {
+    background: var(--forest); padding: 0.9rem 1.25rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dash-logo { font-size: 0.9rem; color: #F4F1EB; font-weight: 500; letter-spacing: 0.05em; }
+  .dash-tag {
+    font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em;
+    background: rgba(209,214,104,0.2); color: var(--accent); padding: 3px 8px; border-radius: 999px;
+  }
+  .dash-stats-row { display: grid; grid-template-columns: repeat(3,1fr); border-bottom: 1px solid var(--line); }
+  .dash-stat { padding: 1rem 1.1rem; border-right: 1px solid var(--line); }
+  .dash-stat:last-child { border-right: none; }
+  .dash-stat-n { font-family: var(--serif); font-size: 1.5rem; font-weight: 500; color: var(--text); }
+  .dash-stat-l { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-top: 2px; }
+  .dash-section { padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); }
+  .dash-section:last-child { border-bottom: none; }
+  .dash-section-title { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 500; margin-bottom: 0.75rem; }
+  .enq-row { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid rgba(44,40,38,0.05); }
+  .enq-row:last-child { border-bottom: none; }
+  .enq-name { font-size: 0.8rem; font-weight: 500; }
+  .enq-detail { font-size: 0.68rem; color: var(--text-muted); }
+  .enq-badge { font-size: 0.6rem; font-weight: 500; padding: 3px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .badge-new { background: rgba(209,214,104,0.25); color: #616B10; }
+  .badge-view { background: var(--blush); color: var(--terra); }
+  .badge-sent { background: rgba(44,40,38,0.08); color: var(--text-muted); }
+
+  .revenue-bar-row { display: flex; flex-direction: column; gap: 0.6rem; }
+  .rev-bar-item { display: grid; align-items: center; gap: 0.75rem; grid-template-columns: 80px 1fr 50px; }
+  .rev-bar-label { font-size: 0.72rem; color: var(--text-muted); }
+  .rev-bar-track { height: 6px; background: rgba(44,40,38,0.08); border-radius: 3px; overflow: hidden; }
+  .rev-bar-fill { height: 100%; border-radius: 3px; background: var(--forest); }
+  .rev-bar-val { font-size: 0.72rem; font-weight: 500; text-align: right; }
+
+  /* ─── SHARED ─── */
+  .section-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; display: block; }
+  .section-h2 { font-family: var(--serif); font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 400; line-height: 1.18; color: var(--text); margin-bottom: 1rem; }
+  .section-sub { font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; margin-bottom: 2.5rem; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── WHY PILLAAR ─── */
+  .section-why { padding: 7rem 5rem; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 3.5rem;
+  }
+
+  .why-card {
+    border-radius: 20px;
+    padding: 2rem 1.75rem 1.75rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .why-card:hover { transform: translateY(-5px); box-shadow: 0 20px 52px rgba(44,40,38,0.13); }
+
+  /* Bottom accent bar */
+  .why-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; border-radius: 0 0 20px 20px;
+  }
+
+  /* Icon pill */
+  .why-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem; flex-shrink: 0;
+  }
+  .why-icon i { font-size: 22px; line-height: 1; display: flex; }
+
+  .why-title {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+    line-height: 1.25; margin-bottom: 0.65rem;
+  }
+  .why-desc { font-size: 0.84rem; line-height: 1.75; font-weight: 300; flex: 1; }
+
+  /* ── Card 1 — Terracotta ── */
+  .why-card:nth-child(1) { background: #C95D3B; }
+  .why-card:nth-child(1) .why-icon { background: rgba(255,255,255,0.18); }
+  .why-card:nth-child(1) .why-icon i { color: rgba(255,255,255,0.95); }
+  .why-card:nth-child(1) .why-title { color: #fff; }
+  .why-card:nth-child(1) .why-desc { color: rgba(255,255,255,0.75); }
+  .why-card:nth-child(1)::after { background: rgba(255,255,255,0.25); }
+
+  /* ── Card 2 — Forest ── */
+  .why-card:nth-child(2) { background: #1F3D3C; }
+  .why-card:nth-child(2) .why-icon { background: rgba(209,214,104,0.15); }
+  .why-card:nth-child(2) .why-icon i { color: #D1D668; }
+  .why-card:nth-child(2) .why-title { color: #F4F1EB; }
+  .why-card:nth-child(2) .why-desc { color: rgba(244,241,235,0.6); }
+  .why-card:nth-child(2)::after { background: #D1D668; }
+
+  /* ── Card 3 — Olive ── */
+  .why-card:nth-child(3) { background: #D1D668; }
+  .why-card:nth-child(3) .why-icon { background: rgba(44,40,38,0.12); }
+  .why-card:nth-child(3) .why-icon i { color: #2C2826; }
+  .why-card:nth-child(3) .why-title { color: #2C2826; }
+  .why-card:nth-child(3) .why-desc { color: rgba(44,40,38,0.68); }
+  .why-card:nth-child(3)::after { background: rgba(44,40,38,0.2); }
+
+  /* ── Card 4 — Blush ── */
+  .why-card:nth-child(4) { background: #F2D4CD; }
+  .why-card:nth-child(4) .why-icon { background: rgba(201,93,59,0.15); }
+  .why-card:nth-child(4) .why-icon i { color: #C95D3B; }
+  .why-card:nth-child(4) .why-title { color: #2C2826; }
+  .why-card:nth-child(4) .why-desc { color: rgba(44,40,38,0.68); }
+  .why-card:nth-child(4)::after { background: #C95D3B; }
+
+  .why-card-text { display: flex; flex-direction: column; }
+
+  /* ─── HOW IT WORKS ─── */
+  .section-how { padding: 7rem 5rem; background: #EDE9E1; }
+
+  .how-tabs { display: flex; gap: 0; background: rgba(44,40,38,0.08); border-radius: 999px; padding: 4px; width: fit-content; margin-bottom: 3.5rem; }
+  .how-tab {
+    padding: 0.5rem 1.5rem; border-radius: 999px; font-size: 0.8rem; font-weight: 400;
+    color: var(--text-muted); border: none; background: none; cursor: pointer;
+    font-family: var(--sans); letter-spacing: 0.04em; transition: all 0.2s;
+  }
+  .how-tab.active { background: var(--bg); color: var(--text); font-weight: 500; }
+
+  .how-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+
+  .how-step { position: relative; }
+  .how-step::after {
+    content: '→';
+    position: absolute; top: 1.5rem; right: -1.2rem;
+    color: rgba(44,40,38,0.2); font-size: 1rem;
+  }
+  .how-step:last-child::after { display: none; }
+
+  .how-step-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem; border: none; flex-shrink: 0;
+  }
+  .how-step-n { font-size: 1.65rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
+
+  /* Colour each circle through the brand palette */
+  .how-step:nth-child(1) .how-step-circle { background: #C95D3B; }
+  .how-step:nth-child(1) .how-step-n { color: #fff; }
+
+  .how-step:nth-child(2) .how-step-circle { background: #1F3D3C; }
+  .how-step:nth-child(2) .how-step-n { color: #fff; }
+
+  .how-step:nth-child(3) .how-step-circle { background: #D1D668; }
+  .how-step:nth-child(3) .how-step-n { color: #2C2826; }
+
+  .how-step:nth-child(4) .how-step-circle { background: #E3A88F; }
+  .how-step:nth-child(4) .how-step-n { color: #2C2826; }
+  .how-step-title { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; }
+  .how-step-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+
+  /* stonemason / funeral director tab content */
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; }
+
+  /* ─── PRICING ─── */
+  .section-pricing { padding: 7rem 5rem; }
+
+  .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+
+  .price-card {
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .price-card:hover { transform: translateY(-3px); }
+  .price-card.featured { border: 2px solid var(--forest); position: relative; }
+
+  .price-card-badge {
+    background: var(--forest); color: var(--accent);
+    font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.4rem 1rem; text-align: center;
+  }
+
+  .price-card-body { padding: 2rem; }
+  .price-tier { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 500; margin-bottom: 0.75rem; }
+  .price-amount { font-family: var(--serif); font-size: 2.4rem; font-weight: 500; color: var(--text); line-height: 1; margin-bottom: 0.3rem; }
+  .price-per { font-size: 0.75rem; color: var(--text-muted); }
+  .price-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin: 1.25rem 0; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+  .price-features { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.25rem; }
+  .pfeat { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
+  .pfeat-check { color: var(--forest); font-size: 0.75rem; flex-shrink: 0; margin-top: 1px; }
+  .price-cta { margin-top: 2rem; }
+
+  .btn-full {
+    display: block; width: 100%; text-align: center;
+    padding: 0.8rem; border-radius: 6px; font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.05em; text-decoration: none; border: 1px solid var(--line);
+    color: var(--text); transition: all 0.2s; cursor: pointer; background: var(--bg);
+  }
+  .btn-full:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn-full.primary { background: var(--forest); color: #F4F1EB; border-color: var(--forest); }
+  .btn-full.primary:hover { background: #2A5250; }
+
+  /* ─── TESTIMONIALS ─── */
+  .section-testi { padding: 7rem 5rem; background: var(--forest); }
+  .section-testi .section-label { color: rgba(244,241,235,0.4); }
+  .section-testi .section-h2 { color: #F4F1EB; }
+  .section-testi .section-sub { color: rgba(244,241,235,0.45); }
+
+  .testi-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+
+  .tcard {
+    background: rgba(244,241,235,0.05); border: 1px solid rgba(244,241,235,0.1);
+    border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem;
+  }
+  .tcard-stars { color: var(--accent); font-size: 0.75rem; letter-spacing: 3px; }
+  .tcard-quote { font-family: var(--serif); font-size: 1rem; font-style: italic; color: rgba(244,241,235,0.8); line-height: 1.65; flex: 1; }
+  .tcard-author { display: flex; align-items: center; gap: 0.75rem; }
+  .tcard-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(209,214,104,0.2); display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 500; color: var(--accent); flex-shrink: 0;
+  }
+  .tcard-name { font-size: 0.82rem; font-weight: 500; color: #F4F1EB; }
+  .tcard-loc { font-size: 0.72rem; color: rgba(244,241,235,0.4); }
+
+  /* ─── CTA SECTION ─── */
+  .section-cta {
+    padding: 8rem 5rem; background: #EDE9E1; text-align: center; position: relative; overflow: hidden;
+  }
+  .section-cta::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(31,61,60,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 2; max-width: 560px; margin: 0 auto; }
+  .cta-tag {
+    display: inline-block; background: rgba(44,40,38,0.06);
+    border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 1rem;
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 1.75rem;
+  }
+  .cta-h2 { font-family: var(--serif); font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; line-height: 1.15; color: var(--text); margin-bottom: 1rem; }
+  .cta-h2 em { font-style: italic; color: var(--forest); }
+  .cta-sub { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; margin-bottom: 2.5rem; }
+
+  .apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 480px;
+    margin: 0 auto 1rem;
+  }
+
+  .apply-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .apply-input {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    outline: none;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .apply-input::placeholder { color: var(--text-muted); }
+  .apply-input:focus {
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px rgba(31,61,60,0.08);
+    background: #fff;
+  }
+  .apply-input.error { border-color: rgba(201,93,59,0.7); }
+
+  .apply-select {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    outline: none;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.1rem center;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .apply-select:focus {
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px rgba(31,61,60,0.08);
+    background-color: #fff;
+  }
+  .apply-select.error { border-color: rgba(201,93,59,0.7); }
+
+  .apply-submit {
+    width: 100%;
+    justify-content: center;
+    border-radius: 10px;
+  }
+
+  .cta-disclaimer { font-size: 0.72rem; color: var(--text-muted); text-align: center; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--forest); padding: 1rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 0.5rem; }
+  .footer-logo-text { font-size: 0.95rem; font-weight: 500; color: #F4F1EB; letter-spacing: 0.02em; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.78rem; color: rgba(244,241,235,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(244,241,235,0.85); }
+  .footer-copy { font-size: 0.72rem; color: rgba(244,241,235,0.35); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── RESPONSIVE — TABLET (≤900px) ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { min-height: 100svh; padding: 7rem 2rem 4rem; }
+    nav { padding: 0 1.5rem; }
+    .nav-left .nav-link:not(:first-child) { display: none; }
+    .section-why, .section-how, .section-pricing, .section-testi, .section-cta { padding: 4rem 2rem; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-grid, .testi-grid { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr 1fr; }
+    .how-step::after { display: none; }
+    .section-h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+    footer { flex-direction: column; gap: 1.25rem; padding: 2rem; text-align: center; }
+  }
+
+  /* ─── RESPONSIVE — MOBILE (≤480px) ─── */
+  @media (max-width: 480px) {
+    .hero-left { padding: 5rem 1.25rem 3rem; }
+    .hero-h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
+    .why-grid { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr; }
+    .hero-cta-row { flex-direction: column; gap: 0.75rem; }
+    .hero-cta-row a { width: 100%; text-align: center; justify-content: center; }
+    .section-why, .section-how, .section-pricing,
+    .section-testi, .section-cta { padding: 3rem 1.25rem; }
+    .apply-row { grid-template-columns: 1fr; }
+    .testi-grid { gap: 1rem; }
+    nav { padding: 0 1rem; }
+    .nav-logo img { height: 70px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a href="pillaar-landing-v2.html" class="nav-link">← Families</a>
+    <a href="#how-it-works" class="nav-link active">For Providers</a>
+  </div>
+
+  <a href="pillaar-landing-v2.html" class="nav-logo">
+    <img src="pillaar-logo.png" alt="Pillaar" style="height: 100px; width: auto; display: block;" />
+  </a>
+
+  <div class="nav-right">
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#apply" class="btn-pill">
+      <span class="dot"></span>
+      Register Interest
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-eyebrow">Pillaar for Stonemasons &amp; Funeral Directors</span>
+    <h1 class="hero-h1">The platform built around your <em>craft.</em></h1>
+    <p class="hero-sub">Whether you cut stone or guide families through bereavement, Pillaar connects you with families who are ready. Receive qualified leads with full 3D briefs, manage your pipeline, and grow your reputation.</p>
+    <div class="hero-cta-row">
+      <a href="#apply" class="btn-start-light">
+        <span class="dot"></span>
+Register Interest
+  </a>
+      <a href="#how-it-works" class="btn-ghost-light">See how it works</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hstat-n">12+</div>
+        <div class="hstat-l">Leads / month</div>
+      </div>
+      <div>
+        <div class="hstat-n">48h</div>
+        <div class="hstat-l">Approval time</div>
+      </div>
+      <div>
+        <div class="hstat-n">68%</div>
+        <div class="hstat-l">Avg. acceptance rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="dash-preview">
+      <div class="dash-nav">
+        <span class="dash-logo">Pillaar</span>
+        <span class="dash-tag">Provider Dashboard</span>
+      </div>
+      <div class="dash-stats-row">
+        <div class="dash-stat">
+          <div class="dash-stat-n">12</div>
+          <div class="dash-stat-l">New leads</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-n">£8.2k</div>
+          <div class="dash-stat-l">Quoted this mo.</div>
+        </div>
+        <div class="dash-stat">
+          <div class="dash-stat-n">4.9 ★</div>
+          <div class="dash-stat-l">Your rating</div>
+        </div>
+      </div>
+      <div class="dash-section">
+        <div class="dash-section-title">Recent Enquiries</div>
+        <div class="enq-row">
+          <div>
+            <div class="enq-name">Portland Limestone, Honed</div>
+            <div class="enq-detail">SW9 · Headstone · £1,200–1,500 · Full 3D brief</div>
+          </div>
+          <span class="enq-badge badge-new">New</span>
+        </div>
+        <div class="enq-row">
+          <div>
+            <div class="enq-name">Black Granite, Polished</div>
+            <div class="enq-detail">SE1 · Memorial · £1,800–2,200 · Full 3D brief</div>
+          </div>
+          <span class="enq-badge badge-view">Viewing</span>
+        </div>
+        <div class="enq-row">
+          <div>
+            <div class="enq-name">Welsh Slate, Sandblast</div>
+            <div class="enq-detail">SW2 · Headstone · £900–1,200 · Full 3D brief</div>
+          </div>
+          <span class="enq-badge badge-sent">Quote sent</span>
+        </div>
+      </div>
+      <div class="dash-section">
+        <div class="dash-section-title">Revenue by stone type — this quarter</div>
+        <div class="revenue-bar-row">
+          <div class="rev-bar-item">
+            <span class="rev-bar-label">Granite</span>
+            <div class="rev-bar-track"><div class="rev-bar-fill" style="width:78%"></div></div>
+            <span class="rev-bar-val">£9,840</span>
+          </div>
+          <div class="rev-bar-item">
+            <span class="rev-bar-label">Limestone</span>
+            <div class="rev-bar-track"><div class="rev-bar-fill" style="width:55%"></div></div>
+            <span class="rev-bar-val">£6,950</span>
+          </div>
+          <div class="rev-bar-item">
+            <span class="rev-bar-label">Slate</span>
+            <div class="rev-bar-track"><div class="rev-bar-fill" style="width:32%"></div></div>
+            <span class="rev-bar-val">£4,100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- WHY PILLAAR -->
+<section class="section-why">
+  <span class="section-label reveal">Why Pillaar</span>
+  <h2 class="section-h2 reveal">More than a lead generator.<br>A growth partner.</h2>
+  <p class="section-sub reveal" style="max-width: 520px;">For stonemasons and funeral directors offering memorial services, traditional marketing is expensive and unpredictable. Pillaar sends you families who have already designed their memorial, set a budget, and are ready to move forward.</p>
+
+<div class="why-grid">
+
+  <div class="why-card reveal">
+    <div class="why-icon"><i class="ph ph-file-text"></i></div>
+    <div class="why-title">Leads that arrive ready</div>
+    <div class="why-desc">Every enquiry includes a full 3D design spec — stone type, dimensions, inscription, and finish. No briefs to chase, no guesswork. Just quote.</div>
+  </div>
+
+  <div class="why-card reveal" style="transition-delay: 0.08s">
+    <div class="why-icon"><i class="ph ph-star"></i></div>
+    <div class="why-title">Your reputation, front and centre</div>
+    <div class="why-desc">Families compare you on reviews, portfolio, and rating — not just price. Build your standing and convert on quality, not a race to the bottom.</div>
+  </div>
+
+  <div class="why-card reveal" style="transition-delay: 0.16s">
+    <div class="why-icon"><i class="ph ph-layout"></i></div>
+    <div class="why-title">One dashboard for everything</div>
+    <div class="why-desc">Manage enquiries, send quotes, track pipeline stages, and update your profile — all in one clean interface built for stonemasons and funeral directors alike.</div>
+  </div>
+
+  <div class="why-card reveal" style="transition-delay: 0.24s">
+    <div class="why-icon"><i class="ph ph-handshake"></i></div>
+    <div class="why-title">Visible at the right moment</div>
+    <div class="why-desc">Stonemasons are surfaced when families are ready to order. Funeral directors appear as trusted guides from the moment bereavement begins. Every provider reaches families at exactly the right time.</div>
+  </div>
+
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-how" id="how-it-works">
+  <span class="section-label reveal">The Process</span>
+  <h2 class="section-h2 reveal">How it works for your business</h2>
+
+  <div class="how-tabs reveal">
+    <button class="how-tab active" onclick="switchProviderTab(this,'mason')">Stonemason</button>
+    <button class="how-tab" onclick="switchProviderTab(this,'fd')">Funeral Director</button>
+  </div>
+
+  <!-- Stonemason steps -->
+  <div class="tab-content active" id="tab-mason">
+  <div class="how-steps">
+  <div class="how-step reveal">
+  <div class="how-step-circle"><span class="how-step-n"><i class="ph ph-seal-check"></i></span></div>
+  <div class="how-step-title">Apply &amp; get verified</div>
+  <div class="how-step-desc">Submit your NAMM credentials, portfolio, and coverage area. Our team reviews and approves your profile within 48 hours.</div>
+  </div>
+  <div class="how-step reveal" style="transition-delay:0.1s">
+  <div class="how-step-circle"><span class="how-step-n"><i class="ph ph-file-text"></i></span></div>
+  <div class="how-step-title">Receive design briefs</div>
+  <div class="how-step-desc">When a family in your area submits a design, you receive a full brief: stone, shape, inscription, cemetery location, and their budget range.</div>
+  </div>
+  <div class="how-step reveal" style="transition-delay:0.2s">
+  <div class="how-step-circle"><span class="how-step-n"><i class="ph ph-receipt"></i></span></div>
+  <div class="how-step-title">Submit your quote</div>
+  <div class="how-step-desc">Send a transparent, itemised quote through the dashboard. Families compare you against up to three other verified masons in your area.</div>
+  </div>
+  <div class="how-step reveal" style="transition-delay:0.3s">
+  <div class="how-step-circle"><span class="how-step-n"><i class="ph ph-trophy"></i></span></div>
+  <div class="how-step-title">Win work, build reputation</div>
+  <div class="how-step-desc">When selected, you work directly with the family to fulfil the order. After installation, the family leaves a verified review that strengthens your profile.</div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Funeral director steps -->
+  <div class="tab-content" id="tab-fd">
+  <div class="how-steps">
+  <div class="how-step reveal">
+  <div class="how-step-circle"><span class="how-step-n"><i class="ph ph-buildings"></i></span></div>
+  <div class="how-step-title">Partner &amp; list your services</div>
+  <div class="how-step-desc">Register your funeral home, add your service area, and create your profile. Families in bereavement can discover and contact you directly.</div>
+  </div>
+  <div class="how-step reveal" style="transition-delay:0.1s">
+  <div class="how-step-circle"><span class="how-step-n"><i class="ph ph-users"></i></span></div>
+  <div class="how-step-title">Receive memorial referrals</div>
+  <div class="how-step-desc">When families in your area begin memorial design on Pillaar, you appear as a trusted local funeral director to guide and support them.</div>
+  </div>
+  <div class="how-step reveal" style="transition-delay:0.2s">
+  <div class="how-step-circle"><span class="how-step-n"><i class="ph ph-handshake"></i></span></div>
+  <div class="how-step-title">Coordinate with stonemasons</div>
+  <div class="how-step-desc">Optionally connect to verified stonemasons in our network to offer a seamless, end-to-end service to the families you support.</div>
+  </div>
+  <div class="how-step reveal" style="transition-delay:0.3s">
+  <div class="how-step-circle"><span class="how-step-n"><i class="ph ph-heart"></i></span></div>
+  <div class="how-step-title">Build trust &amp; retention</div>
+  <div class="how-step-desc">Verified reviews and profile visibility help families find and return to your practice. Build long-term community trust through Pillaar.</div>
+  </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING — temporarily hidden, re-add when ready -->
+<section class="section-pricing" id="pricing" style="display: none;">
+  <span class="section-label reveal">Pricing</span>
+  <h2 class="section-h2 reveal">Straightforward plans.<br>Built around your business.</h2>
+  <p class="section-sub reveal" style="max-width: 480px;">Pick the plan that fits your volume. Every plan includes the full dashboard — you only pay more for more leads and features.</p>
+
+  <div class="pricing-grid">
+    <!-- Starter -->
+    <div class="price-card reveal">
+      <div class="price-card-body">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount">£249</div>
+        <div class="price-per">per month</div>
+        <p class="price-desc">Perfect for independent stonemasons looking to grow steadily with a consistent flow of local leads.</p>
+        <div class="price-features">
+          <div class="pfeat"><span class="pfeat-check">✓</span> Up to 8 leads per month</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Full 3D design briefs</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Quote & pipeline dashboard</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Verified profile & reviews</div>
+          
+        </div>
+        <div class="price-cta">
+          <a href="#apply" class="btn-full">Apply — Starter</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional -->
+    <div class="price-card featured reveal" style="transition-delay:0.1s">
+      <div class="price-card-badge">Most Popular</div>
+      <div class="price-card-body">
+        <div class="price-tier">Professional</div>
+        <div class="price-amount">£499</div>
+        <div class="price-per">per month</div>
+        <p class="price-desc">For established stonemasons ready to scale. Priority placement and more leads to keep your order book full.</p>
+        <div class="price-features">
+          <div class="pfeat"><span class="pfeat-check">✓</span> Up to 20 leads per month</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Priority placement in results</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Full 3D design briefs</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Advanced analytics & reporting</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Portfolio showcase (up to 20 works)</div>
+          
+        </div>
+        <div class="price-cta">
+          <a href="#apply" class="btn-full primary">Apply — Professional</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="price-card reveal" style="transition-delay:0.2s">
+      <div class="price-card-body">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">£1,099</div>
+        <div class="price-per">per month</div>
+        <p class="price-desc">For multi-branch businesses and funeral director groups managing high volume across multiple locations.</p>
+        <div class="price-features">
+          <div class="pfeat"><span class="pfeat-check">✓</span> Unlimited leads</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Multi-location management</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Dedicated account manager</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> API access & CRM integrations</div>
+          <div class="pfeat"><span class="pfeat-check">✓</span> Custom portfolio & branding</div>
+          
+        </div>
+        <div class="price-cta">
+          <a href="#apply" class="btn-full">Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-testi">
+  <span class="section-label reveal">From Our Provider Network</span>
+  <h2 class="section-h2 reveal">Providers who trust Pillaar.</h2>
+  <p class="section-sub reveal" style="max-width: 480px;">Hear from stonemasons and funeral directors offering memorial services who are already growing their businesses through the platform.</p>
+
+  <div class="testi-grid">
+    <div class="tcard reveal">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-quote">"The quality of leads from Pillaar is unlike anything I've had before. Families arrive with a clear design and a realistic budget. I close around 70% of the quotes I submit."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">RH</div>
+        <div>
+          <div class="tcard-name">Robert H. — Harrison &amp; Sons</div>
+          <div class="tcard-loc">Stonemason · Clapham, London</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:0.15s">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-quote">"The economics just make sense. The leads I receive through Pillaar are so well-qualified that I'm converting at a rate I've never seen before. The dashboard is genuinely easy to use."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">AT</div>
+        <div>
+          <div class="tcard-name">Anne T. — Thomas Memorial Craft</div>
+          <div class="tcard-loc">Stonemason · Brixton, London</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:0.3s">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-quote">"We use Pillaar to refer families to trusted stonemasons and it's transformed our aftercare offering. Families feel supported; we strengthen the relationship."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">MF</div>
+        <div>
+          <div class="tcard-name">Margaret F. — Fairfield Funeral Services</div>
+          <div class="tcard-loc">Funeral Director · South London</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard reveal" style="transition-delay:0.45s">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-quote">"I was sceptical, but the 3D brief system is a game-changer. I know exactly what the family wants before I even pick up the phone. It saves hours of back-and-forth."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">DS</div>
+        <div>
+          <div class="tcard-name">David S. — Stone &amp; Sons Ltd</div>
+          <div class="tcard-loc">Stonemason · Streatham, London</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER INTEREST CTA -->
+<section class="section-cta" id="apply">
+  <div class="cta-inner">
+    <div class="cta-tag reveal">Register Interest</div>
+    <h2 class="cta-h2 reveal">Be among the first<br><em>providers</em> on Pillaar</h2>
+    <p class="cta-sub reveal">We are building our network ahead of launch. Whether you are a stonemason or a funeral director offering memorial services, leave your details and we will reach out when we are ready to onboard providers in your area.</p>
+
+    <div class="apply-form reveal">
+      <div class="apply-row">
+        <input type="text" class="apply-input" id="apply-name" placeholder="Contact name">
+        <input type="text" class="apply-input" id="apply-business" placeholder="Business name">
+      </div>
+      <input type="email" class="apply-input" id="apply-email" placeholder="Business email address">
+      <select class="apply-select" id="apply-type">
+        <option value="" disabled selected>I am a...</option>
+        <option value="stonemason">Stonemason</option>
+        <option value="funeral-director">Funeral Director</option>
+        <option value="both">Both</option>
+      </select>
+      <button class="btn-pill-dark apply-submit" onclick="handleApply()">
+        <span class="dot" style="background:var(--accent);"></span>
+        Register Interest
+      </button>
+    </div>
+
+    <p class="cta-disclaimer reveal">No commitment required. We will be in touch with next steps ahead of our launch.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="pillaar-white.png" alt="Pillaar" style="height: 70px; width: auto; display: block;" />
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="pillaar-landing-v2.html">For Families</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Pillaar Ltd. All rights reserved.</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Provider type tabs
+  function switchProviderTab(btn, type) {
+    document.querySelectorAll('.how-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + type).classList.add('active');
+    // Re-trigger reveal for newly visible elements
+    document.querySelectorAll('#tab-' + type + ' .reveal').forEach(el => {
+      el.classList.remove('visible');
+      setTimeout(() => { el.classList.add('visible'); }, 50);
+    });
+  }
+
+  // Register interest form
+  async function handleApply() {
+    const nameEl     = document.getElementById('apply-name');
+    const businessEl = document.getElementById('apply-business');
+    const emailEl    = document.getElementById('apply-email');
+    const typeEl     = document.getElementById('apply-type');
+    const btn        = document.querySelector('.apply-form .btn-pill-dark');
+    let valid = true;
+
+    [nameEl, businessEl, emailEl].forEach(el => el.classList.remove('error'));
+    typeEl.classList.remove('error');
+
+    if (!nameEl.value.trim())                          { nameEl.classList.add('error');     valid = false; }
+    if (!businessEl.value.trim())                      { businessEl.classList.add('error'); valid = false; }
+    if (!emailEl.value || !emailEl.value.includes('@')){ emailEl.classList.add('error');    valid = false; }
+    if (!typeEl.value)                                 { typeEl.classList.add('error');      valid = false; }
+
+    if (!valid) return;
+
+    btn.innerHTML = '<span class="dot" style="background:rgba(255,255,255,0.4);"></span> Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/api/register-interest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contactName:  nameEl.value.trim(),
+          businessName: businessEl.value.trim(),
+          email:        emailEl.value.trim(),
+          providerType: typeEl.value,
+        }),
+      });
+
+      if (res.ok) {
+        btn.innerHTML = '<span class="dot" style="background:#4CAF50;"></span> Interest registered!';
+        btn.style.background = '#2A5250';
+        nameEl.value = '';
+        businessEl.value = '';
+        emailEl.value = '';
+        typeEl.value = '';
+      } else {
+        const { error } = await res.json();
+        btn.innerHTML = '<span class="dot" style="background:#C95D3B;"></span> Something went wrong — try again';
+        btn.disabled = false;
+        console.error('[Pillaar]', error);
+      }
+    } catch (err) {
+      btn.innerHTML = '<span class="dot" style="background:#C95D3B;"></span> Something went wrong — try again';
+      btn.disabled = false;
+      console.error('[Pillaar] fetch error:', err);
+    }
+  }
+</script>
+</body>
+</html>

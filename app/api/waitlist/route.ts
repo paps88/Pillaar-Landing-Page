@@ -1,87 +1,61 @@
-import { createClient } from "@/lib/supabase/server"
-import { NextResponse } from "next/server"
-import { Resend } from "resend"
+import { createClient } from '@supabase/supabase-js'
+import { NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
 
-async function sendNotificationEmail(signupData: {
-  email: string
-  userType: string
-  companyName: string | null
-}) {
-  const notificationEmail = process.env.NOTIFICATION_EMAIL
-  
-  if (!notificationEmail || !process.env.RESEND_API_KEY) {
-    console.log("Email notification skipped: missing RESEND_API_KEY or NOTIFICATION_EMAIL")
-    return
-  }
-
+export async function POST(req: Request) {
   try {
-    await resend.emails.send({
-      from: "Pillaar Waitlist <onboarding@resend.dev>",
-      to: notificationEmail,
-      subject: `New Waitlist Signup: ${signupData.userType === "provider" ? "Provider" : "Family"}`,
-      html: `
-        <h2>New Waitlist Signup</h2>
-        <p><strong>Email:</strong> ${signupData.email}</p>
-        <p><strong>Type:</strong> ${signupData.userType === "provider" ? "Provider" : "Family"}</p>
-        ${signupData.companyName ? `<p><strong>Company:</strong> ${signupData.companyName}</p>` : ""}
-        <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
-      `,
-    })
-    console.log("Notification email sent successfully")
-  } catch (error) {
-    console.error("Failed to send notification email:", error)
-  }
-}
+    const { email, signupType } = await req.json()
 
-export async function POST(request: Request) {
-  try {
-    const { email, userType, companyName } = await request.json()
-
-    if (!email) {
-      return NextResponse.json(
-        { error: "Email is required" },
-        { status: 400 }
-      )
+    if (!email || !email.includes('@')) {
+      return NextResponse.json({ error: 'Valid email is required.' }, { status: 400 })
+    }
+    if (!['family', 'provider'].includes(signupType)) {
+      return NextResponse.json({ error: 'Invalid signup type.' }, { status: 400 })
     }
 
-    const supabase = await createClient()
+    const { error: dbError } = await supabase
+      .from('waitlist_signups')
+      .insert({ email: email.trim().toLowerCase(), signup_type: signupType })
 
-    const { data, error } = await supabase
-      .from("waitlist")
-      .insert({
-        email,
-        user_type: userType || "family",
-        company_name: companyName || null,
+    if (dbError) {
+      console.error('[Pillaar] Supabase insert error:', dbError.message)
+      return NextResponse.json({ error: 'Failed to save registration.' }, { status: 500 })
+    }
+
+    // Email notification via Resend
+    if (process.env.RESEND_API_KEY && process.env.NOTIFICATION_EMAIL) {
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: 'Pillaar <onboarding@resend.dev>',
+          to: process.env.NOTIFICATION_EMAIL,
+          subject: `New waitlist signup — ${signupType}`,
+          html: `
+            <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:2rem;background:#f9f9f9;border-radius:12px;">
+              <h2 style="color:#1F3D3C;margin-top:0;">New Waitlist Signup</h2>
+              <table style="width:100%;border-collapse:collapse;">
+                <tr><td style="padding:8px 0;color:#888;font-size:14px;">Email</td><td style="padding:8px 0;font-size:14px;font-weight:500;">${email}</td></tr>
+                <tr><td style="padding:8px 0;color:#888;font-size:14px;">Type</td><td style="padding:8px 0;font-size:14px;font-weight:500;text-transform:capitalize;">${signupType}</td></tr>
+                <tr><td style="padding:8px 0;color:#888;font-size:14px;">Time</td><td style="padding:8px 0;font-size:14px;">${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}</td></tr>
+              </table>
+              <p style="margin-top:1.5rem;font-size:12px;color:#aaa;">Pillaar · waitlist_signups</p>
+            </div>
+          `,
+        }),
       })
-      .select()
-      .single()
-
-    if (error) {
-      // Check for duplicate email
-      if (error.code === "23505") {
-        return NextResponse.json(
-          { error: "This email is already on the waitlist" },
-          { status: 409 }
-        )
-      }
-      throw error
     }
 
-    // Send notification email (non-blocking)
-    sendNotificationEmail({
-      email,
-      userType: userType || "family",
-      companyName: companyName || null,
-    })
-
-    return NextResponse.json({ success: true, data })
-  } catch (error) {
-    console.error("Waitlist error:", error)
-    return NextResponse.json(
-      { error: "Failed to join waitlist" },
-      { status: 500 }
-    )
+    return NextResponse.json({ success: true }, { status: 200 })
+  } catch (err) {
+    console.error('[Pillaar] Waitlist API error:', err)
+    return NextResponse.json({ error: 'Unexpected error.' }, { status: 500 })
   }
 }
