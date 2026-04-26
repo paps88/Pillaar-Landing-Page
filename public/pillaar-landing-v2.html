@@ -666,20 +666,37 @@
       min-height: 240px;
     }
 
-    /* Swatches: ensure they don't overflow on narrow screens */
+    /* Swatches: single row, compact, no wrapping */
     .stone-swatches {
-      bottom: 0.75rem;
-      gap: 0.35rem;
-      flex-wrap: wrap;
+      bottom: 0.6rem;
+      gap: 0.3rem;
+      flex-wrap: nowrap;
       justify-content: center;
-      padding: 0 0.5rem;
+      width: 100%;
+      padding: 0 0.75rem;
+      box-sizing: border-box;
     }
     .stone-swatch {
-      padding: 0.35rem 0.55rem 0.35rem 0.4rem;
-      font-size: 0.65rem;
-      min-height: 32px; /* touch target */
+      padding: 0.3rem 0.5rem 0.3rem 0.35rem;
+      font-size: 0.6rem;
+      min-height: 30px;
+      white-space: nowrap;
+      flex: 1;
+      justify-content: center;
     }
-    .swatch-dot { width: 12px; height: 12px; }
+    .swatch-dot { width: 10px; height: 10px; flex-shrink: 0; }
+
+    /* Quote card: smaller, pinned to bottom-right corner clear of model */
+    .float-card.quote-card {
+      bottom: auto;
+      top: 0.75rem;
+      right: 0.75rem;
+      min-width: unset;
+      width: auto;
+      padding: 0.55rem 0.75rem;
+      transform: scale(0.82);
+      transform-origin: top right;
+    }
 
     .feat-grid { grid-template-columns: 1fr; }
     .section-features, .section-providers,
