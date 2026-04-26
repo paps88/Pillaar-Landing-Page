@@ -180,6 +180,58 @@
     display: block; width: 100% !important; height: 100% !important;
   }
 
+  /* ─── Stone swatches ─── */
+  .stone-swatches {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6rem;
+    z-index: 10;
+  }
+
+  .stone-swatch {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.75rem 0.4rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(30,25,22,0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    color: rgba(244,241,235,0.75);
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .stone-swatch:hover {
+    background: rgba(30,25,22,0.75);
+    transform: translateY(-2px);
+  }
+  .stone-swatch.active {
+    background: rgba(30,25,22,0.82);
+    border-color: rgba(255,255,255,0.35);
+    color: #F4F1EB;
+  }
+
+  .swatch-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(255,255,255,0.2);
+  }
+
+  /* Dot colours per stone */
+  [data-stone="charcoal"] .swatch-dot { background: #3a3a3c; }
+  [data-stone="portland"] .swatch-dot { background: #c8c0ac; }
+  [data-stone="rosewood"] .swatch-dot { background: #7a4a4a; }
+
   .hero-studio-label-right {
     position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
     font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -662,6 +714,22 @@
   <div class="hero-right">
     <div class="hero-stone-wrap">
       <canvas id="headstone-canvas"></canvas>
+
+      <!-- Stone swatches -->
+      <div class="stone-swatches" role="group" aria-label="Stone type">
+        <button class="stone-swatch active" data-stone="charcoal" aria-label="Charcoal Granite" title="Charcoal Granite">
+          <span class="swatch-dot"></span>
+          <span class="swatch-name">Charcoal</span>
+        </button>
+        <button class="stone-swatch" data-stone="portland" aria-label="Portland Limestone" title="Portland Limestone">
+          <span class="swatch-dot"></span>
+          <span class="swatch-name">Portland</span>
+        </button>
+        <button class="stone-swatch" data-stone="rosewood" aria-label="Rosewood Granite" title="Rosewood Granite">
+          <span class="swatch-dot"></span>
+          <span class="swatch-name">Rosewood</span>
+        </button>
+      </div>
     </div>
     <span class="hero-studio-label-right">Memorial Design</span>
 
@@ -1244,6 +1312,7 @@
   // Polished face — low roughness for that reflective monument look
   const faceMat = new THREE.MeshStandardMaterial({
     map: graniteTex,
+    color: new THREE.Color(1, 1, 1),
     roughness: 0.08,
     metalness: 0.06,
   });
@@ -1251,6 +1320,7 @@
   // Honed sides — slightly rougher
   const sideMat = new THREE.MeshStandardMaterial({
     map: graniteSideTex,
+    color: new THREE.Color(1, 1, 1),
     roughness: 0.50,
     metalness: 0.02,
   });
@@ -1258,9 +1328,13 @@
   // Base/plinth — same stone, less polished
   const baseMat = new THREE.MeshStandardMaterial({
     map: graniteSideTex,
+    color: new THREE.Color(1, 1, 1),
     roughness: 0.62,
     metalness: 0.02,
   });
+
+  // Expose for swatch interactivity
+  window._pillaarStone = { faceMat, sideMat, baseMat, scene };
 
   const groundMat = new THREE.MeshStandardMaterial({
     color: 0x7a9b58,
@@ -1454,6 +1528,38 @@
     renderer.render(scene, camera);
   }
   animate();
+})();
+
+// ── Stone swatch interactivity ────────────────────────────────
+(function () {
+  const STONES = {
+    charcoal: { tint: new THREE.Color(1.00, 1.00, 1.00), bg: 0xe8e4de, roughness: [0.08, 0.50, 0.62] },
+    portland:  { tint: new THREE.Color(1.55, 1.50, 1.38), bg: 0xebe6da, roughness: [0.22, 0.65, 0.75] },
+    rosewood:  { tint: new THREE.Color(1.20, 0.78, 0.76), bg: 0xe4dcd8, roughness: [0.10, 0.52, 0.64] },
+  };
+
+  function applyStone(key) {
+    const s = STONES[key];
+    if (!s || !window._pillaarStone) return;
+    const { faceMat, sideMat, baseMat, scene } = window._pillaarStone;
+
+    faceMat.color.copy(s.tint);
+    sideMat.color.copy(s.tint);
+    baseMat.color.copy(s.tint);
+    faceMat.roughness = s.roughness[0];
+    sideMat.roughness = s.roughness[1];
+    baseMat.roughness = s.roughness[2];
+    faceMat.needsUpdate = sideMat.needsUpdate = baseMat.needsUpdate = true;
+    scene.background = new THREE.Color(s.bg);
+  }
+
+  document.querySelectorAll('.stone-swatch').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.stone-swatch').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyStone(btn.dataset.stone);
+    });
+  });
 })();
 </script>
 </body>
