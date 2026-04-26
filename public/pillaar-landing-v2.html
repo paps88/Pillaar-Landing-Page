@@ -228,9 +228,9 @@
   }
 
   /* Dot colours per stone */
-  [data-stone="charcoal"] .swatch-dot { background: #3a3a3c; }
-  [data-stone="portland"] .swatch-dot { background: #c8c0ac; }
-  [data-stone="rosewood"] .swatch-dot { background: #7a4a4a; }
+  [data-stone="charcoal-grey"] .swatch-dot { background: #4a4a4c; }
+  [data-stone="black-pearl"] .swatch-dot { background: #111112; }
+  [data-stone="blue-pearl"] .swatch-dot { background: #1e2240; }
 
   .hero-studio-label-right {
     position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
@@ -717,17 +717,17 @@
 
       <!-- Stone swatches -->
       <div class="stone-swatches" role="group" aria-label="Stone type">
-        <button class="stone-swatch active" data-stone="charcoal" aria-label="Charcoal Granite" title="Charcoal Granite">
+        <button class="stone-swatch active" data-stone="charcoal-grey" aria-label="Charcoal Grey Granite" title="Charcoal Grey Granite">
           <span class="swatch-dot"></span>
-          <span class="swatch-name">Charcoal</span>
+          <span class="swatch-name">Charcoal Grey</span>
         </button>
-        <button class="stone-swatch" data-stone="portland" aria-label="Portland Limestone" title="Portland Limestone">
+        <button class="stone-swatch" data-stone="black-pearl" aria-label="Black Pearl Granite" title="Black Pearl Granite">
           <span class="swatch-dot"></span>
-          <span class="swatch-name">Portland</span>
+          <span class="swatch-name">Black Pearl</span>
         </button>
-        <button class="stone-swatch" data-stone="rosewood" aria-label="Rosewood Granite" title="Rosewood Granite">
+        <button class="stone-swatch" data-stone="blue-pearl" aria-label="Blue Pearl Granite" title="Blue Pearl Granite">
           <span class="swatch-dot"></span>
-          <span class="swatch-name">Rosewood</span>
+          <span class="swatch-name">Blue Pearl</span>
         </button>
       </div>
     </div>
@@ -1532,20 +1532,47 @@
 
 // ── Stone swatch interactivity ────────────────────────────────
 (function () {
+  const loader = new THREE.TextureLoader();
+
   const STONES = {
-    charcoal: { tint: new THREE.Color(1.00, 1.00, 1.00), bg: 0xe8e4de, roughness: [0.08, 0.50, 0.62] },
-    portland:  { tint: new THREE.Color(1.55, 1.50, 1.38), bg: 0xebe6da, roughness: [0.22, 0.65, 0.75] },
-    rosewood:  { tint: new THREE.Color(1.20, 0.78, 0.76), bg: 0xe4dcd8, roughness: [0.10, 0.52, 0.64] },
+    'charcoal-grey': {
+      face: '/charcoal_grey_granite_albedo.jpg',
+      side: '/charcoal_grey_granite_albedo.jpg',
+      bg: 0xdedad4, roughness: [0.10, 0.52, 0.64],
+    },
+    'black-pearl': {
+      face: '/black_pearl_granite_albedo.jpg',
+      side: '/black_pearl_granite_albedo.jpg',
+      bg: 0xd8d5d0, roughness: [0.06, 0.48, 0.60],
+    },
+    'blue-pearl': {
+      face: '/blue_perl_granite_albedo.jpg',
+      side: '/blue_perl_granite_albedo.jpg',
+      bg: 0xd5d8e0, roughness: [0.08, 0.50, 0.62],
+    },
   };
+
+  // Preload all textures
+  const cache = {};
+  Object.entries(STONES).forEach(([key, s]) => {
+    cache[key] = {
+      face: loader.load(s.face, t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(2, 2); }),
+      side: loader.load(s.side, t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1, 2); }),
+    };
+  });
 
   function applyStone(key) {
     const s = STONES[key];
-    if (!s || !window._pillaarStone) return;
+    const tex = cache[key];
+    if (!s || !tex || !window._pillaarStone) return;
     const { faceMat, sideMat, baseMat, scene } = window._pillaarStone;
 
-    faceMat.color.copy(s.tint);
-    sideMat.color.copy(s.tint);
-    baseMat.color.copy(s.tint);
+    faceMat.map = tex.face;
+    sideMat.map = tex.side;
+    baseMat.map = tex.side;
+    faceMat.color.set(0xffffff);
+    sideMat.color.set(0xffffff);
+    baseMat.color.set(0xffffff);
     faceMat.roughness = s.roughness[0];
     sideMat.roughness = s.roughness[1];
     baseMat.roughness = s.roughness[2];
