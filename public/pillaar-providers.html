@@ -389,25 +389,25 @@
 
   /* ─── CTA SECTION ─── */
   .section-cta {
-    padding: 8rem 5rem; background: #EDE9E1; text-align: center; position: relative; overflow: hidden;
+    padding: 8rem 5rem; background: var(--forest); text-align: center; position: relative; overflow: hidden;
   }
   .section-cta::before {
     content: '';
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
     width: 500px; height: 500px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(31,61,60,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(209,214,104,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
   .cta-inner { position: relative; z-index: 2; max-width: 560px; margin: 0 auto; }
   .cta-tag {
-    display: inline-block; background: rgba(44,40,38,0.06);
-    border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 1rem;
+    display: inline-block; background: rgba(244,241,235,0.08);
+    border: 1px solid rgba(244,241,235,0.15); border-radius: 999px; padding: 0.35rem 1rem;
     font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 1.75rem;
+    color: rgba(244,241,235,0.5); margin-bottom: 1.75rem;
   }
-  .cta-h2 { font-family: var(--serif); font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; line-height: 1.15; color: var(--text); margin-bottom: 1rem; }
-  .cta-h2 em { font-style: italic; color: var(--forest); }
-  .cta-sub { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; margin-bottom: 2.5rem; }
+  .cta-h2 { font-family: var(--serif); font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; line-height: 1.15; color: #F4F1EB; margin-bottom: 1rem; }
+  .cta-h2 em { font-style: italic; color: var(--accent); }
+  .cta-sub { font-size: 0.95rem; color: rgba(244,241,235,0.55); line-height: 1.7; font-weight: 300; margin-bottom: 2.5rem; }
 
   .apply-form {
     display: flex;
@@ -426,48 +426,49 @@
   .apply-input {
     width: 100%;
     padding: 0.85rem 1.25rem;
-    background: var(--bg);
-    border: 1px solid var(--line);
+    background: rgba(244,241,235,0.08);
+    border: 1px solid rgba(244,241,235,0.18);
     border-radius: 10px;
     outline: none;
-    color: var(--text);
+    color: #F4F1EB;
     font-family: var(--sans);
     font-size: 0.875rem;
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .apply-input::placeholder { color: var(--text-muted); }
+  .apply-input::placeholder { color: rgba(244,241,235,0.35); }
   .apply-input:focus {
-    border-color: var(--forest);
-    box-shadow: 0 0 0 3px rgba(31,61,60,0.08);
-    background: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(209,214,104,0.12);
+    background: rgba(244,241,235,0.12);
   }
-  .apply-input.error { border-color: rgba(201,93,59,0.7); }
+  .apply-input.error { border-color: rgba(201,93,59,0.8); }
 
   .apply-select {
     width: 100%;
     padding: 0.85rem 1.25rem;
-    background: var(--bg);
-    border: 1px solid var(--line);
+    background: rgba(244,241,235,0.08);
+    border: 1px solid rgba(244,241,235,0.18);
     border-radius: 10px;
     outline: none;
-    color: var(--text);
+    color: #F4F1EB;
     font-family: var(--sans);
     font-size: 0.875rem;
     box-sizing: border-box;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23F4F1EB' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1.1rem center;
     cursor: pointer;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
+  .apply-select option { background: var(--forest); color: #F4F1EB; }
   .apply-select:focus {
-    border-color: var(--forest);
-    box-shadow: 0 0 0 3px rgba(31,61,60,0.08);
-    background-color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(209,214,104,0.12);
+    background-color: rgba(244,241,235,0.12);
   }
-  .apply-select.error { border-color: rgba(201,93,59,0.7); }
+  .apply-select.error { border-color: rgba(201,93,59,0.8); }
 
   .apply-submit {
     width: 100%;
@@ -475,7 +476,7 @@
     border-radius: 10px;
   }
 
-  .cta-disclaimer { font-size: 0.72rem; color: var(--text-muted); text-align: center; }
+  .cta-disclaimer { font-size: 0.72rem; color: rgba(244,241,235,0.3); text-align: center; }
 
   /* ─── FOOTER ─── */
   footer {
@@ -817,8 +818,8 @@ Register Interest
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section-testi">
+<!-- TESTIMONIALS — temporarily hidden -->
+<section class="section-testi" style="display:none;">
   <span class="section-label reveal">From Our Provider Network</span>
   <h2 class="section-h2 reveal">Providers who trust Pillaar.</h2>
   <p class="section-sub reveal" style="max-width: 480px;">Hear from stonemasons and funeral directors offering memorial services who are already growing their businesses through the platform.</p>
