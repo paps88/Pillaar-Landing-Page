@@ -611,9 +611,34 @@
 
   /* ─── RESPONSIVE — TABLET (≤900px) ─── */
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { height: auto; min-height: 100svh; padding: 7rem 2rem 4rem; }
+    /* Hero: stack copy above, 3D canvas below */
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      height: auto;
+    }
+    .hero-left {
+      height: auto;
+      min-height: unset;
+      padding: 7rem 2rem 3rem;
+    }
+    .hero-right {
+      display: block;
+      height: min(55vw, 400px);
+      min-height: 280px;
+    }
+    .hero-stone-wrap { height: 100%; }
+
+    /* Swatches: keep readable on tablet */
+    .stone-swatches {
+      bottom: 1rem;
+      gap: 0.5rem;
+    }
+    .stone-swatch {
+      padding: 0.4rem 0.65rem 0.4rem 0.45rem;
+      font-size: 0.68rem;
+    }
+
     .section-features, .section-providers { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2.5rem; }
     .feat-grid { grid-template-columns: 1fr 1fr; }
     .process-steps, .testimonials-row { grid-template-columns: 1fr; }
@@ -632,8 +657,30 @@
 
   /* ─── RESPONSIVE — MOBILE (≤480px) ─── */
   @media (max-width: 480px) {
-    .hero-left { padding: 5rem 1.25rem 3rem; }
-    .hero-h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
+    .hero-left { padding: 5rem 1.25rem 2.5rem; }
+    .hero-h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
+
+    /* 3D canvas: shorter on small phones, still fully visible */
+    .hero-right {
+      height: min(62vw, 320px);
+      min-height: 240px;
+    }
+
+    /* Swatches: ensure they don't overflow on narrow screens */
+    .stone-swatches {
+      bottom: 0.75rem;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 0.5rem;
+    }
+    .stone-swatch {
+      padding: 0.35rem 0.55rem 0.35rem 0.4rem;
+      font-size: 0.65rem;
+      min-height: 32px; /* touch target */
+    }
+    .swatch-dot { width: 12px; height: 12px; }
+
     .feat-grid { grid-template-columns: 1fr; }
     .section-features, .section-providers,
     .section-process, .section-testimonials, .section-cta { padding: 3rem 1.25rem; }
@@ -642,7 +689,7 @@
     .testimonials-row { gap: 1rem; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
     nav { padding: 0 1rem; }
-    .nav-logo img { height: 70px; }
+    .nav-logo img { height: 60px; }
   }
 
   /* Quote compare mini UI for features section */
@@ -1254,13 +1301,16 @@
   // ── Resize ────────────────────────────────────────────────
   function resize() {
     const w = container.clientWidth;
-    const h = container.clientHeight;
+    const h = container.clientHeight || container.parentElement.clientHeight;
+    if (!w || !h) return;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
   resize();
-  window.addEventListener('resize', resize);
+  // ResizeObserver fires immediately on any layout change (incl. orientation)
+  const heroRO = new ResizeObserver(() => resize());
+  heroRO.observe(container);
 
   // ── Lighting ──────────────────────────────────────────────
   scene.add(new THREE.AmbientLight(0xd0d8e8, 0.9));
