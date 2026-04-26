@@ -180,6 +180,58 @@
     display: block; width: 100% !important; height: 100% !important;
   }
 
+  /* ─── Stone swatches ─── */
+  .stone-swatches {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6rem;
+    z-index: 10;
+  }
+
+  .stone-swatch {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.75rem 0.4rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(30,25,22,0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    color: rgba(244,241,235,0.75);
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .stone-swatch:hover {
+    background: rgba(30,25,22,0.75);
+    transform: translateY(-2px);
+  }
+  .stone-swatch.active {
+    background: rgba(30,25,22,0.82);
+    border-color: rgba(255,255,255,0.35);
+    color: #F4F1EB;
+  }
+
+  .swatch-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(255,255,255,0.2);
+  }
+
+  /* Dot colours per stone */
+  [data-stone="charcoal-grey"] .swatch-dot { background: #4a4a4c; }
+  [data-stone="black-pearl"] .swatch-dot { background: #111112; }
+  [data-stone="blue-pearl"] .swatch-dot { background: #1e2240; }
+
   .hero-studio-label-right {
     position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
     font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -514,6 +566,11 @@
     background: var(--accent); white-space: nowrap;
   }
 
+  .cta-price-line {
+    font-size: 0.8rem; color: rgba(244,241,235,0.6); text-align: center;
+    letter-spacing: 0.01em; margin-bottom: 0.5rem;
+  }
+
   .cta-disclaimer {
     font-size: 0.72rem; color: rgba(244,241,235,0.3); text-align: center;
   }
@@ -646,10 +703,10 @@
     <h1 class="hero-h1">A tribute as unique<br>as the life it <em>honours.</em></h1>
     <p class="hero-sub">Design your memorial in beautiful 3D, compare quotes from verified local stonemasons, and commission with complete peace of mind — all from home.</p>
     <div class="hero-cta-row">
-      <a href="#signup" class="btn-start">
-        <span class="dot"></span>
-        Start Designing
-      </a>
+  <a href="#signup" class="btn-start">
+  <span class="dot live"></span>
+  Join the Waitlist
+  </a>
       <a href="#how-it-works" class="btn-ghost">See how it works</a>
     </div>
   </div>
@@ -657,8 +714,24 @@
   <div class="hero-right">
     <div class="hero-stone-wrap">
       <canvas id="headstone-canvas"></canvas>
+
+      <!-- Stone swatches -->
+      <div class="stone-swatches" role="group" aria-label="Stone type">
+        <button class="stone-swatch active" data-stone="charcoal-grey" aria-label="Charcoal Grey Granite" title="Charcoal Grey Granite">
+          <span class="swatch-dot"></span>
+          <span class="swatch-name">Charcoal Grey</span>
+        </button>
+        <button class="stone-swatch" data-stone="black-pearl" aria-label="Black Pearl Granite" title="Black Pearl Granite">
+          <span class="swatch-dot"></span>
+          <span class="swatch-name">Black Pearl</span>
+        </button>
+        <button class="stone-swatch" data-stone="blue-pearl" aria-label="Blue Pearl Granite" title="Blue Pearl Granite">
+          <span class="swatch-dot"></span>
+          <span class="swatch-name">Blue Pearl</span>
+        </button>
+      </div>
     </div>
-    <span class="hero-studio-label-right">Memorial Design</span>
+
 
     <!-- Floating quote card -->
     <div class="float-card quote-card">
@@ -872,8 +945,8 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section-testimonials">
+<!-- TESTIMONIALS — temporarily hidden -->
+<section class="section-testimonials" style="display:none;">
   <span class="section-label reveal">From Families Like Yours</span>
   <h2 class="section-h2 reveal">They trusted Pillaar<br>in their hardest moments.</h2>
 
@@ -937,7 +1010,8 @@
       </button>
     </div>
 
-    <p class="cta-disclaimer reveal">No spam, ever. Just a note when we're ready for you.</p>
+    <p class="cta-price-line reveal">Free to design. Quotes are free. Pay only the provider you choose.</p>
+  <p class="cta-disclaimer reveal">No spam, ever. Just a note when we're ready for you.</p>
 
     <div class="cta-bullets reveal">
       <span class="cta-bullet">Free to design</span>
@@ -1238,6 +1312,7 @@
   // Polished face — low roughness for that reflective monument look
   const faceMat = new THREE.MeshStandardMaterial({
     map: graniteTex,
+    color: new THREE.Color(1, 1, 1),
     roughness: 0.08,
     metalness: 0.06,
   });
@@ -1245,6 +1320,7 @@
   // Honed sides — slightly rougher
   const sideMat = new THREE.MeshStandardMaterial({
     map: graniteSideTex,
+    color: new THREE.Color(1, 1, 1),
     roughness: 0.50,
     metalness: 0.02,
   });
@@ -1252,9 +1328,13 @@
   // Base/plinth — same stone, less polished
   const baseMat = new THREE.MeshStandardMaterial({
     map: graniteSideTex,
+    color: new THREE.Color(1, 1, 1),
     roughness: 0.62,
     metalness: 0.02,
   });
+
+  // Expose for swatch interactivity
+  window._pillaarStone = { faceMat, sideMat, baseMat, scene };
 
   const groundMat = new THREE.MeshStandardMaterial({
     color: 0x7a9b58,
@@ -1448,6 +1528,65 @@
     renderer.render(scene, camera);
   }
   animate();
+})();
+
+// ── Stone swatch interactivity ────────────────────────────────
+(function () {
+  const loader = new THREE.TextureLoader();
+
+  const STONES = {
+    'charcoal-grey': {
+      face: '/charcoal_grey_granite_albedo.jpg',
+      side: '/charcoal_grey_granite_albedo.jpg',
+      bg: 0xdedad4, roughness: [0.10, 0.52, 0.64],
+    },
+    'black-pearl': {
+      face: '/black_pearl_granite_albedo.jpg',
+      side: '/black_pearl_granite_albedo.jpg',
+      bg: 0xd8d5d0, roughness: [0.06, 0.48, 0.60],
+    },
+    'blue-pearl': {
+      face: '/blue_perl_granite_albedo.jpg',
+      side: '/blue_perl_granite_albedo.jpg',
+      bg: 0xd5d8e0, roughness: [0.08, 0.50, 0.62],
+    },
+  };
+
+  // Preload all textures
+  const cache = {};
+  Object.entries(STONES).forEach(([key, s]) => {
+    cache[key] = {
+      face: loader.load(s.face, t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(2, 2); }),
+      side: loader.load(s.side, t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1, 2); }),
+    };
+  });
+
+  function applyStone(key) {
+    const s = STONES[key];
+    const tex = cache[key];
+    if (!s || !tex || !window._pillaarStone) return;
+    const { faceMat, sideMat, baseMat, scene } = window._pillaarStone;
+
+    faceMat.map = tex.face;
+    sideMat.map = tex.side;
+    baseMat.map = tex.side;
+    faceMat.color.set(0xffffff);
+    sideMat.color.set(0xffffff);
+    baseMat.color.set(0xffffff);
+    faceMat.roughness = s.roughness[0];
+    sideMat.roughness = s.roughness[1];
+    baseMat.roughness = s.roughness[2];
+    faceMat.needsUpdate = sideMat.needsUpdate = baseMat.needsUpdate = true;
+    scene.background = new THREE.Color(s.bg);
+  }
+
+  document.querySelectorAll('.stone-swatch').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.stone-swatch').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyStone(btn.dataset.stone);
+    });
+  });
 })();
 </script>
 </body>
