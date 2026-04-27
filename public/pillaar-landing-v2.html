@@ -1148,7 +1148,7 @@
 </script>
 
 <script>
-// ── Mini configurator headstone ��─────────────────────────────
+// ── Mini configurator headstone ��─��───────────────────────────
 (function () {
   function initMini() {
     const canvas = document.getElementById('mini-headstone-canvas');
@@ -1249,13 +1249,13 @@
       const ctx = c.getContext('2d');
       ctx.clearRect(0, 0, 256, 256);
       ctx.textAlign = 'center';
-  ctx.fillStyle = 'rgba(215,175,110,0.92)';
-  ctx.font = '500 34px Georgia, serif';
-  ctx.letterSpacing = '6px';
-  ctx.fillText('SMITH', 128, 110);
-  ctx.font = '300 20px Georgia, serif';
-  ctx.fillStyle = 'rgba(200,158,95,0.75)';
-  ctx.fillText('1945 \u2013 2023', 128, 148);
+      ctx.fillStyle = 'rgba(215,175,110,0.92)';
+      ctx.font = '500 34px Georgia, serif';
+      ctx.letterSpacing = '6px';
+      ctx.fillText('SMITH', 128, 110);
+      ctx.font = '300 20px Georgia, serif';
+      ctx.fillStyle = 'rgba(200,158,95,0.75)';
+      ctx.fillText('1945 \u2013 2023', 128, 148);
       const t = new THREE.CanvasTexture(c);
       t.colorSpace = THREE.SRGBColorSpace;
       return t;
@@ -1593,7 +1593,7 @@
   animate();
 })();
 
-// ── Stone swatch interactivity ────────────────────────────────
+// ── Stone swatch interactivity ��───────────────────────────────
 (function () {
   const loader = new THREE.TextureLoader();
 
