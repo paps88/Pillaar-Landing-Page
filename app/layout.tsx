@@ -25,6 +25,14 @@ export const metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/favicon-32.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
