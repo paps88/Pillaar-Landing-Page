@@ -33,27 +33,11 @@ export async function POST(req: Request) {
 
     const typeLabel = signupType === 'family' ? 'family' : 'provider'
 
-    // Notify info@pillaar.com
-    await resend.emails.send({
-      from: FROM,
-      to: NOTIFY,
-      subject: `New waitlist signup — ${typeLabel}`,
-      html: `
-        <div style="font-family:Georgia,serif;max-width:480px;margin:0 auto;padding:2rem;background:#f2f0ec;border-radius:12px;">
-          <h2 style="color:#1F3D3C;margin-top:0;font-weight:400;">New Waitlist Signup</h2>
-          <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:8px 0;color:#6b6860;font-size:14px;">Email</td><td style="padding:8px 0;font-size:14px;font-weight:500;">${email}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b6860;font-size:14px;">Type</td><td style="padding:8px 0;font-size:14px;font-weight:500;text-transform:capitalize;">${typeLabel}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b6860;font-size:14px;">Time</td><td style="padding:8px 0;font-size:14px;">${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}</td></tr>
-          </table>
-        </div>
-      `,
-    })
-
-    // Confirmation to the signee
-    await resend.emails.send({
+    // Single send — signee gets confirmation, info@ is BCC'd for notification
+    const { error: sendError } = await resend.emails.send({
       from: FROM,
       to: email,
+      bcc: NOTIFY,
       subject: `You're on the Pillaar waitlist`,
       html: `
         <div style="font-family:Georgia,serif;max-width:520px;margin:0 auto;background:#e4e1dc;padding:32px 16px;">
@@ -73,6 +57,9 @@ export async function POST(req: Request) {
         </div>
       `,
     })
+
+    if (sendError) console.error('[Pillaar] Email send error:', JSON.stringify(sendError))
+    else console.log('[Pillaar] Email sent to:', email, '| BCC:', NOTIFY)
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (err) {

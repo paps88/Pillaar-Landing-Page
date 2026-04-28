@@ -43,33 +43,11 @@ export async function POST(req: Request) {
         ? "Funeral Director"
         : "Stonemason & Funeral Director"
 
-    // Notify info@pillaar.com
-    await resend.emails.send({
-      from: FROM,
-      to: NOTIFY,
-      subject: `New Provider Registration — ${businessName}`,
-      html: `
-        <div style="font-family:Georgia,serif;max-width:520px;margin:0 auto;color:#161616;">
-          <div style="background:#1F3D3C;padding:24px 32px;border-radius:12px 12px 0 0;">
-            <h2 style="color:#fff;margin:0;font-size:1.1rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;">New Provider Registration</h2>
-          </div>
-          <div style="background:#f2f0ec;padding:32px;border-radius:0 0 12px 12px;border:1px solid #d5d0c8;border-top:none;">
-            <table style="width:100%;border-collapse:collapse;">
-              <tr><td style="padding:10px 0;border-bottom:1px solid #d5d0c8;color:#6b6860;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;width:40%;">Contact</td><td style="padding:10px 0;border-bottom:1px solid #d5d0c8;font-weight:500;">${contactName}</td></tr>
-              <tr><td style="padding:10px 0;border-bottom:1px solid #d5d0c8;color:#6b6860;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;">Business</td><td style="padding:10px 0;border-bottom:1px solid #d5d0c8;font-weight:500;">${businessName}</td></tr>
-              <tr><td style="padding:10px 0;border-bottom:1px solid #d5d0c8;color:#6b6860;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;">Email</td><td style="padding:10px 0;border-bottom:1px solid #d5d0c8;"><a href="mailto:${email}" style="color:#1F3D3C;">${email}</a></td></tr>
-              <tr><td style="padding:10px 0;color:#6b6860;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;">Type</td><td style="padding:10px 0;font-weight:500;">${providerLabel}</td></tr>
-            </table>
-            <p style="margin-top:24px;font-size:12px;color:#aaa;">Submitted via Pillaar Providers page · ${new Date().toLocaleString("en-GB", { dateStyle: "long", timeStyle: "short" })}</p>
-          </div>
-        </div>
-      `,
-    })
-
-    // Confirmation to the provider
-    await resend.emails.send({
+    // Single send — provider gets confirmation, info@ is BCC'd for notification
+    const { error: sendError } = await resend.emails.send({
       from: FROM,
       to: email,
+      bcc: NOTIFY,
       subject: `Thanks for registering with Pillaar, ${contactName}`,
       html: `
         <div style="font-family:Georgia,serif;max-width:520px;margin:0 auto;background:#e4e1dc;padding:32px 16px;">
@@ -81,6 +59,11 @@ export async function POST(req: Request) {
             <p style="font-size:15px;line-height:1.7;color:#161616;margin:0 0 16px;">
               We've received your registration for <strong>${businessName}</strong> as a ${providerLabel.toLowerCase()}. We're reviewing applications and will be in touch shortly with next steps.
             </p>
+            <table style="width:100%;border-collapse:collapse;margin:0 0 20px;background:#e8e4de;border-radius:8px;padding:16px;">
+              <tr><td style="padding:8px 16px;color:#6b6860;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;width:40%;">Business</td><td style="padding:8px 16px;font-weight:500;font-size:14px;">${businessName}</td></tr>
+              <tr><td style="padding:8px 16px;color:#6b6860;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;">Type</td><td style="padding:8px 16px;font-weight:500;font-size:14px;">${providerLabel}</td></tr>
+              <tr><td style="padding:8px 16px;color:#6b6860;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;">Submitted</td><td style="padding:8px 16px;font-size:14px;">${new Date().toLocaleString("en-GB", { dateStyle: "long", timeStyle: "short" })}</td></tr>
+            </table>
             <p style="font-size:13px;color:#6b6860;margin:0;">
               Questions? Reply to this email or reach us at
               <a href="mailto:info@pillaar.com" style="color:#1F3D3C;">info@pillaar.com</a>.
@@ -89,6 +72,9 @@ export async function POST(req: Request) {
         </div>
       `,
     })
+
+    if (sendError) console.error("[Pillaar] Email send error:", JSON.stringify(sendError))
+    else console.log("[Pillaar] Email sent to:", email, "| BCC:", NOTIFY)
 
     return NextResponse.json({ success: true })
   } catch (err) {
