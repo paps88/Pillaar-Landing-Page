@@ -777,13 +777,13 @@
 
       <!-- Stone swatches -->
       <div class="stone-swatches" role="group" aria-label="Stone type">
-        <button class="stone-swatch active" data-stone="charcoal-grey" aria-label="Charcoal Grey Granite" title="Charcoal Grey Granite">
-          <span class="swatch-dot"></span>
-          <span class="swatch-name">Charcoal Grey</span>
-        </button>
-        <button class="stone-swatch" data-stone="black-pearl" aria-label="Black Pearl Granite" title="Black Pearl Granite">
+        <button class="stone-swatch active" data-stone="black-pearl" aria-label="Black Pearl Granite" title="Black Pearl Granite">
           <span class="swatch-dot"></span>
           <span class="swatch-name">Black Pearl</span>
+        </button>
+        <button class="stone-swatch" data-stone="charcoal-grey" aria-label="Charcoal Grey Granite" title="Charcoal Grey Granite">
+          <span class="swatch-dot"></span>
+          <span class="swatch-name">Charcoal Grey</span>
         </button>
         <button class="stone-swatch" data-stone="blue-pearl" aria-label="Blue Pearl Granite" title="Blue Pearl Granite">
           <span class="swatch-dot"></span>
@@ -1467,12 +1467,12 @@
 
     ctx.textAlign = 'center';
 
-    // Rose motif circle — light silver on dark stone
+    // Rose motif circle — bronze
     ctx.beginPath();
     ctx.arc(256, 55, 32, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(220,218,215,0.18)';
+    ctx.fillStyle = 'rgba(205,155,70,0.18)';
     ctx.fill();
-    ctx.strokeStyle = 'rgba(210,207,203,0.45)';
+    ctx.strokeStyle = 'rgba(205,155,70,0.7)';
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -1483,38 +1483,38 @@
       const py = 55 + Math.sin(angle) * 16;
       ctx.beginPath();
       ctx.ellipse(px, py, 10, 6, angle, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(215,212,208,0.32)';
+      ctx.fillStyle = 'rgba(205,155,70,0.45)';
       ctx.fill();
     }
     ctx.beginPath();
     ctx.arc(256, 55, 8, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(210,207,202,0.38)';
+    ctx.fillStyle = 'rgba(205,155,70,0.55)';
     ctx.fill();
 
-    // Name — bright silver-white, engraved look
-    ctx.fillStyle = 'rgba(235,232,228,0.95)';
+    // Name — bronze
+    ctx.fillStyle = 'rgba(205,155,70,1.0)';
     ctx.font = 'italic 44px Georgia, "Times New Roman", serif';
-    ctx.fillText('Salina Khanom', 256, 140);
+    ctx.fillText('Daniel Jameston', 256, 140);
 
     // Nickname
     ctx.font = 'italic 36px Georgia, "Times New Roman", serif';
-    ctx.fillStyle = 'rgba(230,227,222,0.90)';
-    ctx.fillText("'Julie'", 256, 190);
+    ctx.fillStyle = 'rgba(195,145,65,1.0)';
+    ctx.fillText("'Danny'", 256, 190);
 
     // Dates
     ctx.font = '26px Georgia, "Times New Roman", serif';
-    ctx.fillStyle = 'rgba(222,218,213,0.85)';
+    ctx.fillStyle = 'rgba(185,138,60,1.0)';
     ctx.fillText('10.09.1985 - 07.06.2001', 256, 245);
 
     // Epitaph
     ctx.font = 'italic 24px Georgia, "Times New Roman", serif';
-    ctx.fillStyle = 'rgba(218,215,210,0.82)';
-    ctx.fillText('Precious Daughter,', 256, 305);
-    ctx.fillText('Sister, Auntie and Friend', 256, 340);
+    ctx.fillStyle = 'rgba(185,138,60,1.0)';
+    ctx.fillText('Beloved Son,', 256, 305);
+    ctx.fillText('Brother and Friend', 256, 340);
 
     // Final tribute
     ctx.font = 'italic 26px Georgia, "Times New Roman", serif';
-    ctx.fillStyle = 'rgba(215,212,207,0.78)';
+    ctx.fillStyle = 'rgba(185,138,60,1.0)';
     ctx.fillText('In our hearts', 256, 410);
     ctx.fillText('always and forever', 256, 450);
 
@@ -1531,7 +1531,8 @@
     depthWrite: false,
   });
   const inscriptionMesh = new THREE.Mesh(inscriptionGeo, inscriptionMat);
-  inscriptionMesh.position.set(0, 0.08, 0.16);
+  inscriptionMesh.position.set(0, 0.08, 0.22);
+  inscriptionMesh.renderOrder = 1;
   group.add(inscriptionMesh);
 
   // ── Drag-to-Rotate Interaction ────────────────────────────
@@ -1650,6 +1651,9 @@
       applyStone(btn.dataset.stone);
     });
   });
+
+  // Apply default stone on load
+  applyStone('black-pearl');
 })();
 </script>
 </body>
